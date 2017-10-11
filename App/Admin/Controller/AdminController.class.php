@@ -17,10 +17,20 @@ class AdminController extends Controller{
 		$res = $admin_mobj->check($admin_name, $admin_pass);
 		if(!empty($res)){
 			//如果合法，将用户信息存入session,并跳转到后台首页
-			//
+			@session_start();	//开启session机制
+			$_SESSION['pp_blog_admininfo'] = $res[0];
+			//立即跳转
+			$this->jump('index.php?m=Admin&c=Index&a=index');
 		}
 		else{
-			//如果不合法，提示错误，并返回登陆页
+			$this->jump('index.php?m=Admin&c=Admin&a=login', '用户名或密码错误,返回登陆页!');
 		}
+	}
+	/**
+	 * 退出登录
+	 */
+	public function loginOut(){
+		$_SESSION = array();
+		header('location:index.php?');
 	}
 }

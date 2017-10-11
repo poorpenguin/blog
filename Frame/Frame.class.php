@@ -83,6 +83,7 @@ class Frame {
 			'MyPDO' 	 => FRAME_DIR . 'MyPDO.class.php',
 			'I_DAO'		 => FRAME_DIR . 'I_DAO.interface.php',
 			'Smarty'	 => VEBDOR_DIR . 'Smarty/Smarty.class.php',
+			'Captcha'	 =>	VEBDOR_DIR . 'Captcha.class.php',
 		);
 		//判断是否是框架核心类
 		if(isset($frame_class_list[$class_name])){

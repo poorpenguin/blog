@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-10-09 08:42:34
+/* Smarty version 3.1.29, created on 2017-10-11 08:57:19
   from "D:\wamp\www\blog\App\Admin\View\Index\index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_59db1a5a082f97_92267976',
+  'unifunc' => 'content_59ddc0cf6931e0_94200494',
   'file_dependency' => 
   array (
     'a1aab02b974d47f1204e1d0cef2b56816f3eaad8' => 
     array (
       0 => 'D:\\wamp\\www\\blog\\App\\Admin\\View\\Index\\index.html',
-      1 => 1507531265,
+      1 => 1507705037,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_59db1a5a082f97_92267976 ($_smarty_tpl) {
+function content_59ddc0cf6931e0_94200494 ($_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="zh-CN">
@@ -28,7 +28,7 @@ function content_59db1a5a082f97_92267976 ($_smarty_tpl) {
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>异清轩博客管理系统</title>
+<title>poorpenguin博客管理</title>
 <link rel="stylesheet" type="text/css" href="<?php echo @constant('CSS_DIR');?>
 /bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo @constant('CSS_DIR');?>
@@ -75,17 +75,17 @@ function content_59db1a5a082f97_92267976 ($_smarty_tpl) {
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a class="navbar-brand" href="/">YlsatCMS</a> </div>
+          <a class="navbar-brand" href="/">PoorPenguinCMS</a> </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="">消息 <span class="badge">1</span></a></li>
-            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">admin <span class="caret"></span></a>
+            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">admin<span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-left">
                 <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
                 <li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>
               </ul>
             </li>
-            <li><a href="login.html" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="index.php?m=Admin&c=Admin&a=loginOut" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
             <li><a data-toggle="modal" data-target="#WeChat">帮助</a></li>
           </ul>
           <form action="" method="post" class="navbar-form navbar-right" role="search">

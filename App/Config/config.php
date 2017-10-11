@@ -24,4 +24,12 @@ return array(
 		'default_controller' => 'Admin',
 		'default_action' => 'login',
 	),
+	//验证吗配置
+	Captcha =>array(
+		'width'		=>	80,
+		'height'	=>	32,
+		'pixelnum'	=>	0.03,
+		'linenum'	=>	5,
+		'stringnum'	=>	4,
+	),
 );

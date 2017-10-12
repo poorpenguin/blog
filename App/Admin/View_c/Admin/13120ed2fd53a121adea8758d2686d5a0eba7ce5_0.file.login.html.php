@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-10-09 09:31:30
+/* Smarty version 3.1.29, created on 2017-10-12 09:57:05
   from "D:\wamp\www\blog\App\Admin\View\Admin\login.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_59db25d2cb6661_02602941',
+  'unifunc' => 'content_59df2051abfbf9_15109685',
   'file_dependency' => 
   array (
     '13120ed2fd53a121adea8758d2686d5a0eba7ce5' => 
     array (
       0 => 'D:\\wamp\\www\\blog\\App\\Admin\\View\\Admin\\login.html',
-      1 => 1507534287,
+      1 => 1507794358,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_59db25d2cb6661_02602941 ($_smarty_tpl) {
+function content_59df2051abfbf9_15109685 ($_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="zh-CN">
@@ -86,6 +86,14 @@ function content_59db25d2cb6661_02602941 ($_smarty_tpl) {
 
         <label for="userPwd" class="sr-only">密码</label>
         <input type="password" id="userPwd" name="admin_pass" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+
+        <label for="captcha" class="sr-only">验证码</label>
+        <input type="captcha" id="captcha" name="admin_captcha" class="form-control" style="width: 45%;" placeholder="请输入验证码" required autocomplete="off" maxlength="18">
+        <img src="index.php?m=<?php echo @constant('MODULE');?>
+&c=<?php echo @constant('CONTROLLER');?>
+&a=captcha" onclick="this.src='index.php?m=<?php echo @constant('MODULE');?>
+&c=<?php echo @constant('CONTROLLER');?>
+&a=captcha&n='+Math.random()" width="80" height="32"/>
 
         <a href="main.html"><button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">登录</button></a>
     </form>

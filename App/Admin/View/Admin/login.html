@@ -39,6 +39,10 @@
         <label for="userPwd" class="sr-only">密码</label>
         <input type="password" id="userPwd" name="admin_pass" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
 
+        <label for="captcha" class="sr-only">验证码</label>
+        <input type="captcha" id="captcha" name="admin_captcha" class="form-control" style="width: 45%;" placeholder="请输入验证码" required autocomplete="off" maxlength="18">
+        <img src="index.php?m={$smarty.const.MODULE}&c={$smarty.const.CONTROLLER}&a=captcha" onclick="this.src='index.php?m={$smarty.const.MODULE}&c={$smarty.const.CONTROLLER}&a=captcha&n='+Math.random()" width="80" height="32"/>
+
         <a href="main.html"><button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">登录</button></a>
     </form>
 

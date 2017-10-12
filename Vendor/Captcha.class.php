@@ -50,7 +50,7 @@ class Captcha {
 	/**
 	 * 生产验证码
 	 */
-	public function generate(){
+	public function produce(){
 		//1.创建画布
 		$img = imagecreatetruecolor($this->width, $this->height);
 		//2.填充背景
@@ -60,6 +60,7 @@ class Captcha {
 		imagefill($img, 0, 0, $backcolor);
 		//3.得到随机验证码字符串
 		$this->string = $this->getRandString();
+
 		//4.验证码字符串写到图片上
 			//4.1计算字符间隔
 		$span = ceil($this->width/($this->stringnum + 1)); 
@@ -70,6 +71,7 @@ class Captcha {
 				//4.2.2单个字符写入到图片对应位置上
 				imagestring($img, 5, ($i+1)*$span, ($this->height/2)-6, $this->string[$i], $stringcolor);
 		}
+
 		// 5, 添加干扰线
 		for($i=1;$i<=$this->linenum;$i++) {
 			$linecolor = imagecolorallocate($img, mt_rand(0,150), mt_rand(30,250), mt_rand(200,255));
@@ -79,17 +81,40 @@ class Captcha {
 			$y2 = mt_rand(0, $this->height - 1);
 			imageline($img, $x1, $y1, $x2, $y2, $linecolor);
 		}
+
 		// 6, 添加干扰点
 		for($i=1;$i<=$this->width*$this->height*$this->pixelnum;$i++) {
 			$pixelcolor = imagecolorallocate($img, mt_rand(100,150), mt_rand(0,120), mt_rand(0,255));
 			imagesetpixel($img, mt_rand(0,$this->width-1),mt_rand(0,$this->height-1), $pixelcolor);
 		}
+
 		// 7, 输出图片
 		header("Content-type:image/png");
 		ob_clean();// 清理数据缓冲区
 		imagepng($img);
 		// 8, 销毁图片
 		imagedestroy($img);
-		
+	}
+	/**
+	 * 设置宽
+	 */
+	public function setWidth($width){
+		$this->width = $width;
+	}
+	/**
+	 * 设置高
+	 */
+	public function setHeight($height){
+		$this->height = $height;
+	}
+	/**
+	 * 验证验证码是否合法
+	 */
+	public function checkCaptcha($captcha){
+		@session_start();
+		if(strtolower($captcha) !== strtolower($_SESSION['captcha'])){
+			return false;
+		}
+		return true;
 	}
 }

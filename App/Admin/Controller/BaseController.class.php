@@ -24,7 +24,7 @@ class BaseController extends Controller{
 		}
 		@session_start();
 		if(!isset($_SESSION['pp_blog_admininfo'])){
-			$this->jump('index.php?m=Admin&c=Admin&a=login',':(请先登录');
+			$this->jump('index.php',':(请先登录');
 		}
 
 	}

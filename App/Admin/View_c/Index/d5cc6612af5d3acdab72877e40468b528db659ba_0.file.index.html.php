@@ -1,3 +1,27 @@
+<?php
+/* Smarty version 3.1.29, created on 2017-10-16 16:53:18
+  from "C:\wamp\www\blog\App\Admin\View\Index\index.html" */
+
+if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+  'has_nocache_code' => false,
+  'version' => '3.1.29',
+  'unifunc' => 'content_59e4c7de658d44_82998140',
+  'file_dependency' => 
+  array (
+    'd5cc6612af5d3acdab72877e40468b528db659ba' => 
+    array (
+      0 => 'C:\\wamp\\www\\blog\\App\\Admin\\View\\Index\\index.html',
+      1 => 1508165595,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_59e4c7de658d44_82998140 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\wamp\\www\\blog\\Vendor\\Smarty\\plugins\\modifier.date_format.php';
+?>
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -6,20 +30,42 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>poorpenguin博客管理</title>
-<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/style.css">
-<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/font-awesome.min.css">
-<link rel="apple-touch-icon-precomposed" href="{$smarty.const.IMAGE_DIR}/icon/icon.png">
-<link rel="shortcut icon" href="{$smarty.const.IMAGE_DIR}/icon/favicon.ico">
-<script src="{$smarty.const.JS_DIR}/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo @constant('CSS_DIR');?>
+/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo @constant('CSS_DIR');?>
+/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo @constant('CSS_DIR');?>
+/font-awesome.min.css">
+<link rel="apple-touch-icon-precomposed" href="<?php echo @constant('IMAGE_DIR');?>
+/icon/icon.png">
+<link rel="shortcut icon" href="<?php echo @constant('IMAGE_DIR');?>
+/icon/favicon.ico">
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/jquery-2.1.4.min.js"><?php echo '</script'; ?>
+>
 <!--[if gte IE 9]>
-  <script src="{$smarty.const.JS_DIR}/jquery-1.11.1.min.js" type="text/javascript"></script>
-  <script src="{$smarty.const.JS_DIR}/html5shiv.min.js" type="text/javascript"></script>
-  <script src="{$smarty.const.JS_DIR}/respond.min.js" type="text/javascript"></script>
-  <script src="{$smarty.const.JS_DIR}/selectivizr-min.js" type="text/javascript"></script>
+  <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/jquery-1.11.1.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/html5shiv.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/respond.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/selectivizr-min.js" type="text/javascript"><?php echo '</script'; ?>
+>
 <![endif]-->
 <!--[if lt IE 9]>
-  <script>window.location.href='upgrade-browser.html';</script>
+  <?php echo '<script'; ?>
+>window.location.href='upgrade-browser.html';<?php echo '</script'; ?>
+>
 <![endif]-->
 </head>
 
@@ -34,7 +80,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="">消息 <span class="badge">1</span></a></li>
-            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$smarty.session.pp_blog_admininfo.admin_name}<span class="caret"></span></a>
+            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['pp_blog_admininfo']['admin_name'];?>
+<span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-left">
                 <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
                 <li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>
@@ -116,10 +163,14 @@
         <table class="table table-striped table-hover">
           <tbody>
             <tr>
-              <td>登录者: <span>{$smarty.session.pp_blog_admininfo.admin_name}</span>，这是您第 <span>{$smarty.session.pp_blog_admininfo.login_nums+1}</span> 次登录</td>
+              <td>登录者: <span><?php echo $_SESSION['pp_blog_admininfo']['admin_name'];?>
+</span>，这是您第 <span><?php echo $_SESSION['pp_blog_admininfo']['login_nums']+1;?>
+</span> 次登录</td>
             </tr>
             <tr>
-              <td>上次登录时间: {$smarty.session.pp_blog_admininfo.login_time|date_format:'%Y-%m-%d'} , 上次登录IP:{$smarty.session.pp_blog_admininfo.login_ip}</td>
+              <td>上次登录时间: <?php echo smarty_modifier_date_format($_SESSION['pp_blog_admininfo']['login_time'],'%Y-%m-%d');?>
+ , 上次登录IP:<?php echo $_SESSION['pp_blog_admininfo']['login_ip'];?>
+</td>
             </tr>
           </tbody>
         </table>
@@ -135,13 +186,15 @@
               <td>管理员个数:</td>
               <td>2 人</td>
               <td>服务器软件:</td>
-              <td>{$smarty.server.SERVER_SOFTWARE}</td>
+              <td><?php echo $_SERVER['SERVER_SOFTWARE'];?>
+</td>
             </tr>
             <tr>
               <td>浏览器:</td>
               <td>Chrome47</td>
               <td>PHP版本:</td>
-              <td>{$smarty.const.PHP_VERSION}</td>
+              <td><?php echo @constant('PHP_VERSION');?>
+</td>
             </tr>
             <tr>
               <td>操作系统:</td>
@@ -151,7 +204,8 @@
             </tr>
             <tr>
               <td>登录者IP:</td>
-              <td>{$smarty.server.REMOTE_ADDR}</td>
+              <td><?php echo $_SERVER['REMOTE_ADDR'];?>
+</td>
               <td>MYSQL版本:</td>
               <td>5.5.40</td>
             </tr>
@@ -299,7 +353,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
       </div>
-      <div class="modal-body" style="text-align:center"> <img src="{$smarty.const.IMAGE_DIR}/weixin.jpg" alt="" style="cursor:pointer"/> </div>
+      <div class="modal-body" style="text-align:center"> <img src="<?php echo @constant('IMAGE_DIR');?>
+/weixin.jpg" alt="" style="cursor:pointer"/> </div>
     </div>
   </div>
 </div>
@@ -311,7 +366,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
       </div>
-      <div class="modal-body"> <img src="{$smarty.const.IMAGE_DIR}/baoman/baoman_01.gif" alt="深思熟虑" />
+      <div class="modal-body"> <img src="<?php echo @constant('IMAGE_DIR');?>
+/baoman/baoman_01.gif" alt="深思熟虑" />
         <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
       </div>
       <div class="modal-footer">
@@ -330,7 +386,15 @@
     <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
   </ul>
 </div>
-<script src="{$smarty.const.JS_DIR}/bootstrap.min.js"></script> 
-<script src="{$smarty.const.JS_DIR}/admin-scripts.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/bootstrap.min.js"><?php echo '</script'; ?>
+> 
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/admin-scripts.js"><?php echo '</script'; ?>
+>
 </body>
 </html>
+<?php }
+}

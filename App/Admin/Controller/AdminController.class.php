@@ -27,6 +27,7 @@ class AdminController extends BaseController{
 			//如果合法，将用户信息存入session,并跳转到后台首页
 			@session_start();	//开启session机制
 			$_SESSION['pp_blog_admininfo'] = $res;
+			$admin_mobj->updateUserInfo($res['admin_id']);
 			//立即跳转
 			$this->jump('index.php?m=Admin&c=Index&a=index');
 		}

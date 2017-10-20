@@ -8,7 +8,7 @@ class Model{
 	/**
 	 * 构造方法 
 	 */
-	protected function __construct(){
+	public function __construct(){
 		$this->initDAO();
 	}
 	/**

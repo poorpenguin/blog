@@ -18,6 +18,7 @@ class BaseController extends Controller{
 		$no_login = array(
 			//控制器名 => 该控制器下不需要验证的动作列表
 			'Admin' => array('login', 'check', 'captcha'),
+			'Index' => array('test'),
 		);
 		if(isset($no_login[CONTROLLER]) && in_array(ACTION, $no_login[CONTROLLER])){
 			return ;//结束checkLogin方法

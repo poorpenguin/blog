@@ -12,6 +12,14 @@ class Controller {
 	public function __construct(){
 		$this->initCode();
 		$this->initSmarty();
+		$this->startSession();
+	}
+	/**
+	 * 开启session
+	 * @return nothing
+	 */
+	protected function startSession(){
+		@session_start();
 	}
 	/**
 	 * 设置编码
@@ -200,5 +208,11 @@ function alertSet(e) {
 TIAOZHUAN;
 			die;
 		}	
+	}
+	/**
+	 * 过滤非法字符
+	 */
+	protected function filterChar($data){
+		return addslashes(strip_tags(trim($data)));
 	}
 }

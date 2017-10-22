@@ -1,0 +1,40 @@
+{include file='../Public/head.html'}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+  <h1 class="page-header">修改栏目</h1>
+  <form action="index.php?m=Admin&c=Category&a=update&cate_id={$cateInfoById.cate_id}" method="post">
+
+    <div class="form-group">
+      <label for="category-name">分类名称</label>
+      <input type="text" id="category-name" name="cate_name" class="form-control" value="{$cateInfoById.cate_name}" placeholder="在此处输入栏目名称" required autocomplete="off">
+      <span class="prompt-text">这将是它在站点上显示的名字。</span> 
+    </div>
+
+    <div class="form-group">
+      <label for="category-pid">父节点</label>
+      <select id="category-pid" class="form-control" name="cate_pid">
+        <option value="0" selected>主分类</option>
+        {foreach from=$cateInfo item='row'}
+        <option value="{$row.cate_id}" {if $cateInfoById.cate_pid == $row.cate_id}selected="selected"{/if}>{$row.cate_name|indent:$row.level:"--"}</option>
+        {/foreach}
+      </select>
+      <span class="prompt-text">栏目是有层级关系的，您可以有一个“音乐”分类目录，在这个目录下可以有叫做“流行”和“古典”的子目录，主分类是顶级的。</span> 
+    </div>
+
+    <div class="form-group">
+      <label for="category-desc">分类排序</label>
+      <input type="text" id="category-desc" name="cate_sort" class="form-control" value="{$cateInfoById.cate_sort}" placeholder="在此处输入栏目关键字" required autocomplete="off">
+      <span class="prompt-text">直接输入数字即可。</span> 
+    </div>
+
+    <div class="form-group">
+      <label for="category-describe">分类描述</label>
+      <textarea class="form-control" id="category-describe" name="cate_desc" rows="4" required autocomplete="off">{$cateInfoById.cate_desc}</textarea>
+      <span class="prompt-text">对分类的描述。</span> 
+    </div>
+	
+	<input type="hidden" name="cate_id" value="{$cateInfoById.cate_id}"/>
+    <button class="btn btn-primary" type="submit">更新</button>
+    <a class="btn btn-primary" href="index.php?m=Admin&c=Category&a=index">返回</a>
+  </form>
+</div>
+{include file='../Public/footer.html'}

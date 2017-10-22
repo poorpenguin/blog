@@ -5,7 +5,7 @@ return array(
 		'host' => '127.0.0.1',
 		'port' => '3306',
 		'user' => 'root',
-		'pwd' => '123456',
+		'pwd' => 'root',
 		'charset' => 'utf8',
 		'dbname' => 'blog'
 	),

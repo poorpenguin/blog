@@ -11,8 +11,8 @@ class AdminController extends BaseController{
 	 * 验证登陆信息
 	 */
 	public function check(){
-		$admin_name = strip_tags(trim($_POST['admin_name']));
-		$admin_pass = strip_tags(trim($_POST['admin_pass']));
+		$admin_name = $this->filterChar($_POST['admin_name']);
+		$admin_pass = $this->filterChar($_POST['admin_pass']);
 		$admin_captcha = trim($_POST['admin_captcha']);
 		//判断验证码
 		$captcha = Factory::M('Captcha');
@@ -25,8 +25,9 @@ class AdminController extends BaseController{
 		$res = $admin_mobj->check($admin_name, $admin_pass);
 		if(!empty($res)){
 			//如果合法，将用户信息存入session,并跳转到后台首页
-			@session_start();	//开启session机制
+			//@session_start();	//开启session机制
 			$_SESSION['pp_blog_admininfo'] = $res;
+			//更新用户登录信息
 			$admin_mobj->updateUserInfo($res['admin_id']);
 			//立即跳转
 			$this->jump('index.php?m=Admin&c=Index&a=index');
@@ -39,8 +40,11 @@ class AdminController extends BaseController{
 	 * 退出登录
 	 */
 	public function loginOut(){
-		$_SESSION = array();
-		header('location:index.php?');
+		//删除相关会话数据
+		unset($_SESSION['pp_blog_admininfo']);
+		//删除会话数据区
+		session_destroy();
+		header('location:index.php');
 	}
 	/**
 	 * 生成验证码

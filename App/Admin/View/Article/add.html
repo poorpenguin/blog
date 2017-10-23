@@ -32,33 +32,15 @@
         <div class="add-article-box">
           <h2 class="add-article-box-title"><span>文章分类</span></h2>
           <div class="add-article-box-content">
-            <ul class="category-list">
-              <li>
-                <label>
-                  <input name="category" type="radio" value="1" checked>
-                  这是栏目 <em class="hidden-md">( 栏目ID: <span>1</span> )</em></label>
-              </li>
-              <li>
-                <label>
-                  <input name="category" type="radio" value="2">
-                  这是栏目 <em class="hidden-md">( 栏目ID: <span>2</span> )</em></label>
-              </li>
-              <li>
-                <label>
-                  <input name="category" type="radio" value="3">
-                  这是栏目 <em class="hidden-md">( 栏目ID: <span>3</span> )</em></label>
-              </li>
-              <li>
-                <label>
-                  <input name="category" type="radio" value="4">
-                  这是栏目 <em class="hidden-md">( 栏目ID: <span>4</span> )</em></label>
-              </li>
-              <li>
-                <label>
-                  <input name="category" type="radio" value="5">
-                  这是栏目 <em class="hidden-md">( 栏目ID: <span>5</span> )</em></label>
-              </li>
-            </ul>
+            <div class="form-group">
+              <label for="category-pid">文章分类</label>
+              <select id="category-pid" class="form-control" name="cate_pid">
+                <option value="0" selected>主分类</option>
+                {foreach from=$cateInfo item='row'}
+                <option value="{$row.cate_id}">{$row.cate_name|indent:$row.level:"--"}</option>
+                {/foreach}
+              </select>
+            </div>
           </div>
         </div>
         <div class="add-article-box">

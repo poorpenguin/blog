@@ -1,5 +1,5 @@
 <?php
-class CategoryController extends Controller{
+class CategoryController extends BaseController{
 	/**
 	 * 展示添加 分页表单 和 已添加分类列表
 	 * @return  display
@@ -104,10 +104,10 @@ class CategoryController extends Controller{
 	 * 批量删除分类
 	 */
 	public function deleteAll(){
-		if(!isset($_POST['cate_id'])){
+		if(!isset($_POST['id'])){
 			$this->jump('index.php?m=Admin&c=Category&a=index','请选择要删除的分类',2);
 		}
-		$cate_id = $_POST['cate_id'];
+		$cate_id = $_POST['id'];
 		$category = Factory::M('CategoryModel');
 		$res = $category->deleteAllCateInfo($cate_id);
 		if($res){

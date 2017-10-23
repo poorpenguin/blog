@@ -44,7 +44,9 @@
       <h1 class="page-header">管理 <span class="badge">3</span></h1>
       <div class="table-responsive">
         <form action="index.php?m=Admin&c=Category&a=deleteAll" method="post">
-          <input type="button" class="btn btn-default btn-sm" value="全选"/>
+          <a class="btn btn-default" onClick="select()">全选</a> 
+          <a class="btn btn-default" onClick="reverse()">反选</a> 
+          <a class="btn btn-default" onClick="noselect()">不选</a>
           <input type="submit" class="btn btn-warning btn-sm" onclick="return confirm('此操作不可逆，是否确认批量删除？')" value="批量删除"/>
           <table class="table table-striped table-hover">
             <thead>
@@ -59,7 +61,7 @@
             <tbody>
             {foreach from=$cateInfo item="row"}
               <tr>
-                <td><input type="checkbox" name="cate_id[]" value="{$row.cate_id}"></td>
+                <td><input type="checkbox" name="id[]" value="{$row.cate_id}"></td>
                 <td>{$row.cate_pid}</td>
                 <td>{$row.cate_name|indent:$row.level:"--"}</td>
                 <td>{$row.cate_desc}</td>

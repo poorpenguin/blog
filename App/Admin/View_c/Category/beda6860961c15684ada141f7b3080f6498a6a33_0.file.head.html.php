@@ -1,3 +1,26 @@
+<?php
+/* Smarty version 3.1.29, created on 2017-10-23 09:59:42
+  from "D:\wamp\www\blog\App\Admin\View\Public\head.html" */
+
+if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+  'has_nocache_code' => false,
+  'version' => '3.1.29',
+  'unifunc' => 'content_59eda16e449ed8_60334496',
+  'file_dependency' => 
+  array (
+    'beda6860961c15684ada141f7b3080f6498a6a33' => 
+    array (
+      0 => 'D:\\wamp\\www\\blog\\App\\Admin\\View\\Public\\head.html',
+      1 => 1508744603,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_59eda16e449ed8_60334496 ($_smarty_tpl) {
+?>
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -6,20 +29,42 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>poorpenguin博客管理</title>
-<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/style.css">
-<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/font-awesome.min.css">
-<link rel="apple-touch-icon-precomposed" href="{$smarty.const.IMAGE_DIR}/icon/icon.png">
-<link rel="shortcut icon" href="{$smarty.const.IMAGE_DIR}/icon/favicon.ico">
-<script src="{$smarty.const.JS_DIR}/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo @constant('CSS_DIR');?>
+/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo @constant('CSS_DIR');?>
+/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo @constant('CSS_DIR');?>
+/font-awesome.min.css">
+<link rel="apple-touch-icon-precomposed" href="<?php echo @constant('IMAGE_DIR');?>
+/icon/icon.png">
+<link rel="shortcut icon" href="<?php echo @constant('IMAGE_DIR');?>
+/icon/favicon.ico">
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/jquery-2.1.4.min.js"><?php echo '</script'; ?>
+>
 <!--[if gte IE 9]>
-  <script src="{$smarty.const.JS_DIR}/jquery-1.11.1.min.js" type="text/javascript"></script>
-  <script src="{$smarty.const.JS_DIR}/html5shiv.min.js" type="text/javascript"></script>
-  <script src="{$smarty.const.JS_DIR}/respond.min.js" type="text/javascript"></script>
-  <script src="{$smarty.const.JS_DIR}/selectivizr-min.js" type="text/javascript"></script>
+  <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/jquery-1.11.1.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/html5shiv.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/respond.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/selectivizr-min.js" type="text/javascript"><?php echo '</script'; ?>
+>
 <![endif]-->
 <!--[if lt IE 9]>
-  <script>window.location.href='upgrade-browser.html';</script>
+  <?php echo '<script'; ?>
+>window.location.href='upgrade-browser.html';<?php echo '</script'; ?>
+>
 <![endif]-->
 </head>
 
@@ -34,7 +79,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="">消息 <span class="badge">1</span></a></li>
-            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$smarty.session.pp_blog_admininfo.admin_name}<span class="caret"></span></a>
+            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['pp_blog_admininfo']['admin_name'];?>
+<span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-left">
                 <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
                 <li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>
@@ -94,4 +140,5 @@
           </ul>
         </li>
       </ul>
-    </aside>
+    </aside><?php }
+}

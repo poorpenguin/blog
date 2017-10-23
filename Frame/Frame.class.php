@@ -60,6 +60,7 @@ class Frame {
 		define('CURRENT_CONTROLLER_DIR', CURRENT_MODULE_DIR . 'Controller/');	//当前控制器目录
 		define('CURRENT_MODEL_DIR', CURRENT_MODULE_DIR . 'Model/');	//当前模型目录
 		define('CURRENT_VIEW_DIR', CURRENT_MODULE_DIR . 'View/');	//当前视图目录
+		define('CURRENT_PUBLIC_DIR','/blog/Public/' . MODULE);	//当前平台的public目录
 		define('CSS_DIR', '/blog/Public/' . MODULE . '/css');
 		define('JS_DIR', '/blog/Public/' . MODULE . '/js');
 		define('IMAGE_DIR', '/blog/Public/' . MODULE . '/images');

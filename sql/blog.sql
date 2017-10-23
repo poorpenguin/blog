@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-10-10 10:51:09
+-- Generation Time: 2017-10-22 15:51:17
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -42,7 +42,33 @@ CREATE TABLE IF NOT EXISTS `bg_admin` (
 --
 
 INSERT INTO `bg_admin` (`admin_id`, `admin_name`, `admin_pass`, `login_ip`, `login_nums`, `login_time`) VALUES
-(1, 'poorpenguin', 'e10adc3949ba59abbe56e057f20f883e', '127.0.0.1', 0, 1507518260);
+(1, 'poorpenguin', 'e10adc3949ba59abbe56e057f20f883e', '::1', 10, 1508675501);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `bg_category`
+--
+
+CREATE TABLE IF NOT EXISTS `bg_category` (
+  `cate_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `cate_name` varchar(20) NOT NULL COMMENT '分类名称',
+  `cate_pid` smallint(5) unsigned NOT NULL COMMENT '父分类的主键id',
+  `cate_sort` smallint(5) unsigned NOT NULL COMMENT '分类排序',
+  `cate_desc` varchar(255) DEFAULT NULL COMMENT '分类描述',
+  PRIMARY KEY (`cate_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- 转存表中的数据 `bg_category`
+--
+
+INSERT INTO `bg_category` (`cate_id`, `cate_name`, `cate_pid`, `cate_sort`, `cate_desc`) VALUES
+(1, '慢生活', 0, 1, '记录生活琐事的主分类'),
+(2, '网站开发学习笔记', 0, 2, '学习笔记的主分类'),
+(4, '健身日志', 1, 2, '健身是一种生活方式，更是一种生活态度'),
+(6, 'PHP学习笔记', 2, 2, '记录PHP的心得'),
+(7, 'HTML+CSS笔记', 2, 1, '学习HTML+CSS的心得');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

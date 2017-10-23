@@ -1,3 +1,26 @@
+<?php
+/* Smarty version 3.1.29, created on 2017-10-23 10:02:09
+  from "D:\wamp\www\blog\App\Admin\View\Public\footer.html" */
+
+if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+  'has_nocache_code' => false,
+  'version' => '3.1.29',
+  'unifunc' => 'content_59eda201a0b468_17826264',
+  'file_dependency' => 
+  array (
+    '2c088f859edd0670c0368dfbc99a2a20efae5d82' => 
+    array (
+      0 => 'D:\\wamp\\www\\blog\\App\\Admin\\View\\Public\\footer.html',
+      1 => 1508745726,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_59eda201a0b468_17826264 ($_smarty_tpl) {
+?>
  </div>
 </section>
 <!--个人信息模态框-->
@@ -108,7 +131,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
       </div>
-      <div class="modal-body" style="text-align:center"> <img src="{$smarty.const.IMAGE_DIR}/weixin.jpg" alt="" style="cursor:pointer"/> </div>
+      <div class="modal-body" style="text-align:center"> <img src="<?php echo @constant('IMAGE_DIR');?>
+/weixin.jpg" alt="" style="cursor:pointer"/> </div>
     </div>
   </div>
 </div>
@@ -120,7 +144,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
       </div>
-      <div class="modal-body"> <img src="{$smarty.const.IMAGE_DIR}/baoman/baoman_01.gif" alt="深思熟虑" />
+      <div class="modal-body"> <img src="<?php echo @constant('IMAGE_DIR');?>
+/baoman/baoman_01.gif" alt="深思熟虑" />
         <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
       </div>
       <div class="modal-footer">
@@ -139,7 +164,14 @@
     <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
   </ul>
 </div>
-<script src="{$smarty.const.JS_DIR}/bootstrap.min.js"></script> 
-<script src="{$smarty.const.JS_DIR}/admin-scripts.js"></script> 
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/bootstrap.min.js"><?php echo '</script'; ?>
+> 
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/admin-scripts.js"><?php echo '</script'; ?>
+> 
 </body>
-</html>
+</html><?php }
+}

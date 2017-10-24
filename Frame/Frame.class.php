@@ -30,6 +30,7 @@ class Frame {
 		define('CONFIG_DIR', APP_DIR . 'Config/');//配置文件目录
 		define('VEBDOR_DIR', ROOT_DIR . 'Vendor/');//插件目录
 		define('PUBLIC_DIR', ROOT_DIR . 'Public/');//公共资源目录
+		define('UPLOADS_DIR', ROOT_DIR . 'Uploads/');//用户上传目录
 	}
 	/**
 	 * 初始化配置

@@ -1,41 +1,47 @@
 {include file='../Public/head.html'}
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
   <div class="row">
-    <form action="/Article/add" method="post" class="add-article-form">
+    <form action="index.php?m=Admin&c=Article&a=add" method="post" enctype="multipart/form-data" class="add-article-form">
       <div class="col-md-9">
         <h1 class="page-header">撰写新文章</h1>
+        <!--文章标题-->
         <div class="form-group">
           <label for="article-title" class="sr-only">标题</label>
-          <input type="text" id="article-title" name="title" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off">
+          <input type="text" id="article-title" name="art_title" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off">
         </div>
-        <div class="form-group">
-          <label for="article-content" class="sr-only">内容</label>
-          <script id="article-content" name="content" type="text/plain"></script>
-        </div>
+        
+        <!--文章内容-->
         <div class="add-article-box">
-          <h2 class="add-article-box-title"><span>关键字</span></h2>
+          <h2 class="add-article-box-title"><span>文章内容</span></h2>
           <div class="add-article-box-content">
-          	<input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off">
-            <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
+            <textarea class="form-control" name="art_comment" autocomplete="off"></textarea>
           </div>
         </div>
+        <!-- <div class="form-group">
+          <label for="article-content" class="sr-only">内容</label>
+          <script id="article-content" name="content" type="text/plain"></script>
+        </div> -->
+        
+        <!--文章描述-->
         <div class="add-article-box">
-          <h2 class="add-article-box-title"><span>描述</span></h2>
+          <h2 class="add-article-box-title"><span>文章描述</span></h2>
           <div class="add-article-box-content">
-          	<textarea class="form-control" name="describe" autocomplete="off"></textarea>
-            <span class="prompt-text">描述是可选的手工创建的内容总结，并可以在网页描述中使用</span>
+          	<textarea class="form-control" name="art_desc" autocomplete="off"></textarea>
           </div>
         </div>
       </div>
+
       <div class="col-md-3">
         <h1 class="page-header">操作</h1>
+        
+        <!--文章描述-->
         <div class="add-article-box">
           <h2 class="add-article-box-title"><span>文章分类</span></h2>
           <div class="add-article-box-content">
             <div class="form-group">
-              <label for="category-pid">文章分类</label>
-              <select id="category-pid" class="form-control" name="cate_pid">
-                <option value="0" selected>主分类</option>
+              <label for="category-id">文章分类</label>
+              <select id="category-id" class="form-control" name="cate_id">
+                <option value="" selected></option>
                 {foreach from=$cateInfo item='row'}
                 <option value="{$row.cate_id}">{$row.cate_name|indent:$row.level:"--"}</option>
                 {/foreach}
@@ -43,32 +49,38 @@
             </div>
           </div>
         </div>
+        
+        <!--文章描述-->
         <div class="add-article-box">
-          <h2 class="add-article-box-title"><span>标签</span></h2>
+          <h2 class="add-article-box-title"><span>作者</span></h2>
           <div class="add-article-box-content">
-            <input type="text" class="form-control" placeholder="输入新标签" name="tags" autocomplete="off">
-            <span class="prompt-text">多个标签请用英文逗号,隔开</span> </div>
-        </div>
-        <div class="add-article-box">
-          <h2 class="add-article-box-title"><span>标题图片</span></h2>
-          <div class="add-article-box-content">
-            <input type="text" class="form-control" placeholder="点击按钮选择图片" id="pictureUpload" name="titlepic" autocomplete="off">
+            <input type="text" class="form-control" placeholder="输入作者名" name="art_author" required autocomplete="off">
           </div>
-          <div class="add-article-box-footer">
+        </div>
+        
+        <!--缩略图-->
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>文章缩略图</span></h2>
+          <div class="add-article-box-content">
+            <div class="form-group">
+              <label for="inputfile">文件输入</label>
+              <input type="file" id="inputfile" name="art_thumb"/>
+            </div>
+          </div>
+          <!-- <div class="add-article-box-footer">
             <button class="btn btn-default" type="button" ID="upImage">选择</button>
-          </div>
+          </div> -->
         </div>
+
         <div class="add-article-box">
-          <h2 class="add-article-box-title"><span>发布</span></h2>
+          <h2 class="add-article-box-title"><span>操作</span></h2>
           <div class="add-article-box-content">
-          	<p><label>状态：</label><span class="article-status-display">未发布</span></p>
-            <p><label>公开度：</label><input type="radio" name="visibility" value="0" checked/>公开 <input type="radio" name="visibility" value="1" />加密</p>
-            <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" type="datetime" name="time" value="2016-01-09 17:29:37" /></span></p>
-          </div>
-          <div class="add-article-box-footer">
-            <button class="btn btn-primary" type="submit" name="submit">发布</button>
+          	<button class="btn btn-primary" type="submit">发布</button>
+            <button class="btn btn-success">重置</button>
+            <a class="btn btn-default">返回</a>
           </div>
         </div>
+
       </div>
     </form>
   </div>

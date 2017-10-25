@@ -29,7 +29,6 @@ class ArticleController extends BaseController{
 			$art = array();
 			//过滤非法字符 
 			$art['art_title'] = $this->filterChar($_POST['art_title']);
-			$art['art_thumb'] = $this->filterChar($_POST['art_thumb']);
 			$art['art_desc'] = $this->filterChar($_POST['art_desc']);
 			$art['art_comment'] = $this->filterChar($_POST['art_comment']);
 			$art['art_author'] = $this->filterChar($_POST['art_author']);
@@ -41,6 +40,22 @@ class ArticleController extends BaseController{
 			if(empty($art['cate_id'])){
 				$this->jump('index.php?m=Admin&c=Article&a=add','请选择文章类型',2);
 			}
+			//判断是否有缩略图上传(要在数据插入前判断)
+			if($_FILES['art_thumb']['error'] != 4){
+				//允许上传文件的格式
+				$allow = array('image/jpeg','image/png','image/gif','image/jpg');
+				$path = UPLOADS_DIR . 'thumb';
+				$maxsize = 512000;
+				$upload = Factory::M('Upload');
+				$res = $upload->uploadFile($_FILES['art_thumb'],$allow,$path,$maxsize);
+				if($res){
+					$art['art_thumb'] = $res;
+				}else{
+					$error = $upload->getError();
+					$this->jump('index.php?m=Admin&c=Article&a=add',$error,2);
+				}
+			}
+
 			//添加文章
 			$article = Factory::M('ArticleModel');
 			$res = $article->insertArt($art);
@@ -50,5 +65,9 @@ class ArticleController extends BaseController{
 				$this->jump('index.php?m=Admin&c=Article&a=add','发生未知错误',2);
 			}
 		}
+	}
+
+	public function test(){
+		var_dump(getCWD());
 	}
 }

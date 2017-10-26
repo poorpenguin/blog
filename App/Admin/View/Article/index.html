@@ -56,7 +56,10 @@
             <td class="hidden-sm">{$row.art_desc}</td>
             <td class="hidden-sm">{$row.art_hits}</td>
             <td>{$row.art_addtime|date_format:'%Y-%m-%d %H:%M:%S'}</td>
-            <td><a href="update-article.html">修改</a> <a rel="6">删除</a></td>
+            <td>
+              <a class="btn btn-primary btn-xs" href="index.php?m=Admin&c=Article&a=update&art_id={$row.art_id}">修改</a> 
+              <a class="btn btn-danger btn-xs">删除</a>
+            </td>
           </tr>
           {/foreach}
         </tbody>

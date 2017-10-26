@@ -17,7 +17,6 @@ class ArticleController extends BaseController{
 	 * @return display 
 	 */
 	public function add(){
-		//实例化模型
 		if(empty($_POST)){
 			//展示表单
 			$category = Factory::M('CategoryModel');
@@ -26,13 +25,15 @@ class ArticleController extends BaseController{
 			$this->assign('cateInfo',$cateInfo);
 			$this->display();
 		}else{
+			//添加文章
 			$art = array();
 			//过滤非法字符 
 			$art['art_title'] = $this->filterChar($_POST['art_title']);
 			$art['art_desc'] = $this->filterChar($_POST['art_desc']);
-			$art['art_comment'] = $this->filterChar($_POST['art_comment']);
+			$art['art_comment'] = addslashes($_POST['art_comment']);	//使用addslashes对符号进行转义
 			$art['art_author'] = $this->filterChar($_POST['art_author']);
 			$art['cate_id'] = $_POST['cate_id'];
+
 			//判断数据合法性
 			if(empty($art['art_title']) || empty($art['art_desc']) || empty($art['art_comment']) || empty($art['art_author'])){
 				$this->jump('index.php?m=Admin&c=Article&a=add','填写文章信息不完整',2);
@@ -66,8 +67,30 @@ class ArticleController extends BaseController{
 			}
 		}
 	}
+	/**
+	 * 展示 修改文章表单 和 提交修改
+	 */
+	public function update(){
+		if(empty($_POST)){
+			//展示表单
+			//查询文章
+			$art_id = $_GET['art_id'];
+			$article = Factory::M('ArticleModel');
+			$res = $article->getArticleById($art_id);
+			if(!$res){
+				$this->jump("index.php?m=Admin&c=Article&a=update&art_id=$art_id",'发生位置错误！',2);
+			}
+			//查询分类
+			$category = Factory::M('CategoryModel');
+			$cateInfo = $category->getCategory();//分类列表信息
 
-	public function test(){
-		var_dump(getCWD());
+			$this->assign('cateInfo',$cateInfo);
+			$this->assign('article',$res);
+			$this->display();
+		}else{
+			//提交修改
+		}
+
 	}
+
 }

@@ -28,4 +28,14 @@ class ArticleModel extends Model{
 		$sql = "select * from bg_article where art_id = $art_id";
 		return $this->dao->fetchRow($sql);
 	}
+	/**
+	 * 更新文章数据
+	 * @return false | true
+	 */
+	public function updateArticleById($art){
+		//炸开数组
+		extract($art);
+		$sql = "update bg_article set cate_id=$cate_id,art_title='$art_title',art_thumb='$art_thumb',art_desc='$art_desc',art_comment='$art_comment',art_author='$art_author' where art_id=$art_id";
+		return $this->dao->exec($sql);
+	}
 }

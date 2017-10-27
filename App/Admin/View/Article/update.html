@@ -1,12 +1,13 @@
 {include file='../Public/head.html'}
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
   <div class="row">
-    <form action="index.php?m=Admin&c=Article&a=add" method="post" enctype="multipart/form-data" class="add-article-form">
+    <form action="index.php?m=Admin&c=Article&a=update" method="post" enctype="multipart/form-data" class="add-article-form">
       <div class="col-md-9">
         <h1 class="page-header">撰写新文章</h1>
-        <!--文章标题-->
+        <!--文章标题和隐藏id-->
         <div class="form-group">
           <label for="article-title" class="sr-only">标题</label>
+          <input type="hidden" name="art_id" value="{$article.art_id}"/>
           <input type="text" id="article-title" name="art_title" class="form-control" value="{$article.art_title}" placeholder="在此处输入标题" required autofocus autocomplete="off">
         </div>
         
@@ -51,7 +52,7 @@
           </div>
         </div>
         
-        <!--文章描述-->
+        <!--文章作者-->
         <div class="add-article-box">
           <h2 class="add-article-box-title"><span>作者</span></h2>
           <div class="add-article-box-content">
@@ -66,6 +67,7 @@
             <div class="form-group">
               <label for="inputfile">文件输入</label>
               <input type="file" id="inputfile" name="art_thumb"/>
+              <input type="hidden" name="art_thumb_bak" value="{$article.art_thumb}"/>
             </div>
           </div>
           <!-- <div class="add-article-box-footer">
@@ -76,9 +78,9 @@
         <div class="add-article-box">
           <h2 class="add-article-box-title"><span>操作</span></h2>
           <div class="add-article-box-content">
-          	<button class="btn btn-primary" type="submit">发布</button>
+          	<button class="btn btn-primary" type="submit" onclick="return confirm('确定更新文章内容?')">更新</button>
             <button class="btn btn-success">重置</button>
-            <a class="btn btn-default">返回</a>
+            <a class="btn btn-default" href="index.php?m=Admin&c=Article&a=index">返回</a>
           </div>
         </div>
 

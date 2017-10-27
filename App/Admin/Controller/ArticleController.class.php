@@ -68,12 +68,11 @@ class ArticleController extends BaseController{
 		}
 	}
 	/**
-	 * 展示 修改文章表单 和 提交修改
+	 * 展示 修改文章表单 和 提交文章修改
 	 */
 	public function update(){
 		if(empty($_POST)){
 			//展示表单
-			//查询文章
 			$art_id = $_GET['art_id'];
 			$article = Factory::M('ArticleModel');
 			$res = $article->getArticleById($art_id);
@@ -89,6 +88,51 @@ class ArticleController extends BaseController{
 			$this->display();
 		}else{
 			//提交修改
+			$art = array();
+			//过滤非法字符 
+			$art['art_id'] = $_POST['art_id'];
+			$art['art_title'] = $this->filterChar($_POST['art_title']);
+			$art['art_desc'] = $this->filterChar($_POST['art_desc']);
+			$art['art_comment'] = addslashes($_POST['art_comment']);	//使用addslashes对符号进行转义
+			$art['art_author'] = $this->filterChar($_POST['art_author']);
+			$art['cate_id'] = $_POST['cate_id'];
+			//判断数据的合法性
+			if(empty($art['art_title']) || empty($art['art_desc']) || empty($art['art_comment']) || empty($art['art_author'])){
+				$this->jump("index.php?m=Admin&c=Article&a=update&art_id={$art['art_id']}",'填写内容不完整',2);
+			}
+			if(empty($art['cate_id'])){
+				$this->jump("index.php?m=Admin&c=Article&a=update&art_id={$art['art_id']}",'请选择文章类型',2);
+			}
+			//缩略图判断
+			if($_FILES['art_thumb']['error'] != 4){
+				//缩略图不为空
+				$allow = array('image/jpeg','image/png','image/gif','image/jpg');
+				$path = UPLOADS_DIR . 'thumb';
+				$maxsize = 512000;
+				$upload = Factory::M('Upload');
+				$res = $upload->uploadFile($_FILES['art_thumb'],$allow,$path,$maxsize);
+				if($res){
+					//删除原始缩略图
+					unlink($_POST['art_thumb_bak']);
+					$art['art_thumb'] = $res;
+				}else{
+					$error = $upload->getError();
+					$this->jump("index.php?m=Admin&c=Article&a=update&art_id={$art['art_id']}",$error,2);
+				}
+			}else{
+				//缩略图为空
+				$art['art_thumb'] = $_POST['art_thumb_bak'];
+			}
+			//更新数据
+			$article = Factory::M('ArticleModel');
+			$res = $article->updateArticleById($art);
+			if($res){
+				//更新成功
+				$this->jump('index.php?m=Admin&c=Article&a=index');
+			}else{
+				//更新失败
+				$this->jump("index.php?m=Admin&c=Article&a=update&art_id={$art['art_id']}",'未知错误',2);
+			}
 		}
 
 	}

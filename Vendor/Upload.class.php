@@ -50,6 +50,7 @@ class Upload {
 		//移动文件
 		$res = move_uploaded_file($file['tmp_name'], $target);
 		if($res){
+			//成功时返回上传文件的路径
 			return $target;
 		}else{
 			$this->$error = '发生位置错误，上传失败！';
@@ -64,7 +65,8 @@ class Upload {
 	 */
 	private function randName($filename){
 		//1.生成文件的时间部分
-		$newname = date('YmdHis');
+		date_default_timezone_set('PRC');
+		$newname = date('Ymd-His-');
 		//2.加上随机产生的6位数字防止重复
 		$str = '1234567890';
 		for($i=0;$i<6;++$i){

@@ -134,7 +134,99 @@ class ArticleController extends BaseController{
 				$this->jump("index.php?m=Admin&c=Article&a=update&art_id={$art['art_id']}",'未知错误',2);
 			}
 		}
+	}
+	/**
+	 * 逻辑删除单个文章
+	 */
+	public function delete(){
+		$art_id = $_GET['art_id'];
+		//实例化模型 
+		$article = Factory::M('ArticleModel');
+		$res = $article->deleteArticleById($art_id);
+		if($res){
+			$this->jump('index.php?m=Admin&c=Article&a=index');
+		}else{
+			$this->jump('index.php?m=Admin&c=Article&a=index','发生未知错误,删除文章失败',2);
+		}
+	}
+	/**
+	 * 逻辑删除批量文章
+	 */
+	public function deleteAll(){
+		if(isset($_POST['id'])){
+			$art_id = implode(',',$_POST['id']);
+			//实例化模型 
+			$article = Factory::M('ArticleModel');
+			$res = $article->deleteArticleAll($art_id);
+			if($res){
+				$this->jump('index.php?m=Admin&c=Article&a=index');
+			}else{
+				$this->jump('index.php?m=Admin&c=Article&a=index','发生未知错误,删除文章失败',2);
+			}
+		}else{
+			$this->jump('index.php?m=Admin&c=Article&a=index','请选择删除项',2);
+		}
+	}
+	/**
+	 * 回收站页面
+	 * @return display
+	 */
+	public function recycle(){
+		//实例化模型，提取所有文章
+		$article = Factory::M('ArticleModel');
+		$artInfo = $article->getDeleteArticle();
 
+		$this->assign('artInfo',$artInfo);
+		$this->display();
+	}
+	/**
+	 * 恢复单个文章
+	 * 
+	 */
+	public function recove(){
+		$art_id = $_GET['art_id'];
+		//实例化
+		$article = Factory::M('ArticleModel');
+		$res = $article->recoveArticleById($art_id);
+		if($res){
+			$this->jump('index.php?m=Admin&c=Article&a=recycle');
+		}else{
+			$this->jump('index.php?m=Admin&c=Article&a=recycle','发生未知错误,恢复文章失败',2);
+		}
+	}
+	/**
+	 * 彻底删除单个文章
+	 * 
+	 */
+	public function realDelete(){
+		$art_id = $_GET['art_id'];
+		//实例化模型 
+		$article = Factory::M('ArticleModel');
+		$res = $article->realDeleteArticleById($art_id);
+		if($res){
+			$this->jump('index.php?m=Admin&c=Article&a=recycle');
+		}else{
+			$this->jump('index.php?m=Admin&c=Article&a=recycle','发生未知错误,彻底删除文章失败',2);
+		}
+	}
+	/**
+	 * 批量彻底删除文章
+	 * 
+	 */
+	public function realDeleteAll(){
+		if($_POST['id']){
+			$art_id = implode(',',$_POST['id']);
+			//实例化模型 
+			$article = Factory::M('ArticleModel');
+			$res = $article->realDeleteArticleAll($art_id);
+			if($res){
+				$this->jump('index.php?m=Admin&c=Article&a=recycle');
+			}else{
+				$this->jump('index.php?m=Admin&c=Article&a=recycle','发生未知错误,侧地删除文章失败',2);
+			}
+		}else{
+			$this->jump('index.php?m=Admin&c=Article&a=recycle','请选择要彻底删除项',2);
+		}
 	}
 
 }

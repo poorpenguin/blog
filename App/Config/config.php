@@ -5,7 +5,7 @@ return array(
 		'host' => '127.0.0.1',
 		'port' => '3306',
 		'user' => 'root',
-		'pwd' => '123456',
+		'pwd' => 'root',
 		'charset' => 'utf8',
 		'dbname' => 'blog'
 	),
@@ -31,5 +31,10 @@ return array(
 		'pixelnum'	=>	0.03,
 		'linenum'	=>	5,
 		'stringnum'	=>	4,
+	),
+	//分页配置
+	'Page'	=>array(
+		'rowsPerPage' => 8,	//每页显示的记录数
+		'maxNum'	=> 5,	//最多显示多少个页面的页码
 	),
 );

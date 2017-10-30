@@ -5,10 +5,22 @@ class ArticleController extends BaseController{
 	 * @return display
 	 */
 	public function index(){
-		//实例化模型，提取所有文章
+		//实例化模型
 		$article = Factory::M('ArticleModel');
-		$artInfo = $article->getArticle();
+		//分页部分
+		$pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
+		$rowsPerPge = 10;	//每页显示记录数
+		$maxNum = 5;
+		$rowCount = $article->getRowCount();	//获得总记录数
+		$url = 'index.php?m=Admin&c=Article&a=index';
+		//实例化分页类
+		$page = new Page($rowsPerPge, $maxNum, $rowCount, $url);
+		$strPage = $page->getStrPage();
 
+		//提取分页文章
+		$artInfo = $article->getPageArticle($pageNum,$rowsPerPge);
+
+		$this->assign('page',$strPage);
 		$this->assign('artInfo',$artInfo);
 		$this->display();
 	}
@@ -174,8 +186,20 @@ class ArticleController extends BaseController{
 	public function recycle(){
 		//实例化模型，提取所有文章
 		$article = Factory::M('ArticleModel');
-		$artInfo = $article->getDeleteArticle();
+		//分页部分
+		$pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
+		$rowsPerPge = 10;	//每页显示记录数
+		$maxNum = 5;
+		$rowCount = $article->getDeleteRowCount();	//获得总记录数
+		$url = 'index.php?m=Admin&c=Article&a=recycle';
+		//实例化分页类
+		$page = new Page($rowsPerPge, $maxNum, $rowCount, $url);
+		$strPage = $page->getStrPage();
 
+		//提取分页文章
+		$artInfo = $article->getPageDeleteArticle($pageNum,$rowsPerPge);
+
+		$this->assign('page',$strPage);
 		$this->assign('artInfo',$artInfo);
 		$this->display();
 	}

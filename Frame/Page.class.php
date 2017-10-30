@@ -27,9 +27,9 @@ class Page {
 		$pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
 
 		//分页字符串
-		$strPage = "<ul class='pagination'>";
+		$strPage = "<ul class='pagination pagenav'>";
 		//1.拼凑出首页
-		$strPage .= "<li><a href='{$this->$url}&pageNum=1'>首页</a></li>";
+		$strPage .= "<li><a href='{$this->url}&pageNum=1'>首页</a></li>";
 		//2.拼凑出上一页
 		$preNum = $pageNum-1;
 		if($pageNum == 1){
@@ -37,7 +37,7 @@ class Page {
 			$strPage .= "<li class='disabled'><a href='#'>上一页</a></li>";
 		}else{
 			//不为1，正常
-			$strPage .= "<li><a href='{$this->$url}&pageNum={$preNum}'>上一页</a></li>";
+			$strPage .= "<li><a href='{$this->url}&pageNum={$preNum}'>上一页</a></li>";
 		}
 		//3.拼凑出要显示的页码
 		//3.1确定显示起始页的页码
@@ -47,8 +47,8 @@ class Page {
 			$startNum = $pageNum - ceil($this->maxNum / 2);
 		}
 		//3.2接近尾端，确定显示初始页的最大页码
-		if($startNum >= $pages - $maxNum + 1){
-			$startNum = $pages - $maxNum + 1;
+		if($startNum >= $pages - $this->maxNum + 1){
+			$startNum = $pages - $this->maxNum + 1;
 		}
 		//3.3防止页码出现负值
 		if($startNum <= 1){
@@ -78,7 +78,7 @@ class Page {
 			$strPage .= "<li><a href='{$this->url}&pageNum={$nextPage}'>下一页</a></li>";
 		}
 		//7.拼凑出 尾页
-		$strPage .= "<li><a href='{$this->$url}&pageNum={$pages}'>尾页</a></li>";
+		$strPage .= "<li><a href='{$this->url}&pageNum={$pages}'>尾页</a></li>";
 		//8.拼凑出 总页数
 		$strPage .= "<li><a>共{$pages}页</a></li>";
 		//9.收尾

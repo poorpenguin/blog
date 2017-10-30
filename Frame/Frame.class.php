@@ -87,7 +87,7 @@ class Frame {
 			'Smarty'	 => VEBDOR_DIR . 'Smarty/Smarty.class.php',
 			'Captcha'	 =>	VEBDOR_DIR . 'Captcha.class.php',
 			'Upload'	 => VEBDOR_DIR . 'Upload.class.php',
-			'Page'		 => VEBDOR_DIR . 'Page.class.php',
+			'Page'		 => FRAME_DIR . 'Page.class.php',
 		);
 		//判断是否是框架核心类
 		if(isset($frame_class_list[$class_name])){

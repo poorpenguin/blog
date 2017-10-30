@@ -21,6 +21,41 @@ class ArticleModel extends Model{
 		return $this->dao->fetchAll($sql);
 	}
 	/**
+	 * 获取分页的文章信息
+	 * @return  array
+	 */
+	public function getPageArticle($pageNum, $rowsPerPage){
+		$offset = ($pageNum-1)*$rowsPerPage;
+		$sql = "select a.art_id,a.art_title,c.cate_name,a.art_desc,a.art_author,a.art_hits,a.art_addtime from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete = '0' order by art_addtime desc limit $offset,$rowsPerPage";
+		return $this->dao->fetchAll($sql);	
+	}
+	/**
+	 * 获取分页的文章信息
+	 * @return  array
+	 */
+	public function getPageDeleteArticle($pageNum, $rowsPerPage){
+		$offset = ($pageNum-1)*$rowsPerPage;
+		$sql = "select a.art_id,a.art_title,c.cate_name,a.art_desc,a.art_author,a.art_hits,a.art_addtime from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete = '1' order by art_addtime desc limit $offset,$rowsPerPage";
+		return $this->dao->fetchAll($sql);	
+	}
+	/**
+	 * 获得总记录数
+	 * @return  mixed 数值 | false
+	 */
+	public function getRowCount(){
+		$sql = "select count(*) from bg_article where is_delete = '0'";
+		return $this->dao->fetchColumn($sql);
+	}
+	/**
+	 * 获得逻辑删除总记录数
+	 * @return  mixed 数值 | false
+	 */
+	public function getDeleteRowCount(){
+		$sql = "select count(*) from bg_article where is_delete = '1'";
+		return $this->dao->fetchColumn($sql);
+	}
+
+	/**
 	 * 获取逻辑删除的文章信息
 	 * @return false | 二维数组
 	 */

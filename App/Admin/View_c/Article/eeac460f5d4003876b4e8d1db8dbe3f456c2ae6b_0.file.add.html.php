@@ -1,4 +1,30 @@
-{include file='../Public/head.html'}
+<?php
+/* Smarty version 3.1.29, created on 2017-10-30 07:43:47
+  from "D:\wamp\www\blog\App\Admin\View\Article\add.html" */
+
+if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+  'has_nocache_code' => false,
+  'version' => '3.1.29',
+  'unifunc' => 'content_59f6ca239846d5_24453089',
+  'file_dependency' => 
+  array (
+    'eeac460f5d4003876b4e8d1db8dbe3f456c2ae6b' => 
+    array (
+      0 => 'D:\\wamp\\www\\blog\\App\\Admin\\View\\Article\\add.html',
+      1 => 1509345825,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../Public/head.html' => 1,
+    'file:../Public/footer.html' => 1,
+  ),
+),false)) {
+function content_59f6ca239846d5_24453089 ($_smarty_tpl) {
+$_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:../Public/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
   <div class="row">
     <form action="index.php?m=Admin&c=Article&a=add" method="post" enctype="multipart/form-data" class="add-article-form">
@@ -15,11 +41,16 @@
           <h2 class="add-article-box-title"><span>文章内容</span></h2>
           <div class="add-article-box-content">
             <!--引入ckeditor插件-->
-            <script type="text/javascript" src="{$smarty.const.CURRENT_PUBLIC_DIR}/lib/ckeditor/ckeditor.js"></script>
+            <?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo @constant('CURRENT_PUBLIC_DIR');?>
+/lib/ckeditor/ckeditor.js"><?php echo '</script'; ?>
+>
             <textarea id="ckeditor" name="art_comment"></textarea>
-            <script type="text/javascript">
+            <?php echo '<script'; ?>
+ type="text/javascript">
               CKEDITOR.replace('ckeditor');
-            </script>
+            <?php echo '</script'; ?>
+>
           </div>
         </div>
       
@@ -43,9 +74,28 @@
               <label for="category-id">文章分类</label>
               <select id="category-id" class="form-control" name="cate_id">
                 <option value="" selected></option>
-                {foreach from=$cateInfo item='row'}
-                <option value="{$row.cate_id}">{$row.cate_name|indent:$row.level:"--"}</option>
-                {/foreach}
+                <?php
+$_from = $_smarty_tpl->tpl_vars['cateInfo']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_row_0_saved_item = isset($_smarty_tpl->tpl_vars['row']) ? $_smarty_tpl->tpl_vars['row'] : false;
+$_smarty_tpl->tpl_vars['row'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['row']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+$__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
+?>
+                <option value="<?php echo $_smarty_tpl->tpl_vars['row']->value['cate_id'];?>
+"><?php echo preg_replace('!^!m',str_repeat("--",$_smarty_tpl->tpl_vars['row']->value['level']),$_smarty_tpl->tpl_vars['row']->value['cate_name']);?>
+</option>
+                <?php
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_local_item;
+}
+if ($__foreach_row_0_saved_item) {
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
+}
+?>
               </select>
             </div>
           </div>
@@ -86,4 +136,6 @@
     </form>
   </div>
 </div>
-{include file='../Public/footer.html'}
+<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:../Public/footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+}
+}

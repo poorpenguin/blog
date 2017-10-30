@@ -45,7 +45,8 @@
               <select id="category-id" class="form-control" name="cate_id">
                 <option value="" selected></option>
                 {foreach from=$cateInfo item='row'}
-                <option value="{$row.cate_id}" {if $article.cate_id == $row.cate_id}selected="selected"{/if}>{$row.cate_name|indent:$row.level:"--"}</option>
+                <option value="{$row.cate_id}" {if $article.cate_id == $row.cate_id}selected="selected"{/if}>{$row.cate_name|indent:$row.level:"--"}
+                </option>
                 {/foreach}
               </select>
             </div>

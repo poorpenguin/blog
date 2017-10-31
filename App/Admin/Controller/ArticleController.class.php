@@ -9,7 +9,7 @@ class ArticleController extends BaseController{
 		$article = Factory::M('ArticleModel');
 		//分页部分
 		$pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
-		$rowsPerPge = 10;	//每页显示记录数
+		$rowsPerPge = 7;	//每页显示记录数
 		$maxNum = 5;
 		$rowCount = $article->getRowCount();	//获得总记录数
 		$url = 'index.php?m=Admin&c=Article&a=index';

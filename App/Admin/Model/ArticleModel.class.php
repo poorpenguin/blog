@@ -9,16 +9,8 @@ class ArticleModel extends Model{
 		//炸开数组
 		extract($art);
 		$art_addtime = time();
-		$sql = "insert into bg_article values (null,$cate_id,'$art_title','$art_thumb','$art_desc','$art_comment','$art_author',default,$art_addtime,default)";
+		$sql = "insert into bg_article values (null,$cate_id,'$art_title','$art_thumb','$art_desc','$art_comment','$art_author',default,$art_addtime,default,default)";
 		return $this->dao->exec($sql);
-	}
-	/**
-	 * 获取所有文章信息
-	 * @return [type] [description]
-	 */
-	public function getArticle(){
-		$sql = "select a.art_id,a.art_title,c.cate_name,a.art_desc,a.art_author,a.art_hits,a.art_addtime from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete = '0' order by art_addtime desc";
-		return $this->dao->fetchAll($sql);
 	}
 	/**
 	 * 获取分页的文章信息
@@ -26,11 +18,11 @@ class ArticleModel extends Model{
 	 */
 	public function getPageArticle($pageNum, $rowsPerPage){
 		$offset = ($pageNum-1)*$rowsPerPage;
-		$sql = "select a.art_id,a.art_title,c.cate_name,a.art_desc,a.art_author,a.art_hits,a.art_addtime from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete = '0' order by art_addtime desc limit $offset,$rowsPerPage";
+		$sql = "select a.art_id,a.art_title,c.cate_name,a.art_desc,a.art_author,a.art_hits,a.art_addtime,a.	is_recomment from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete = '0' order by art_addtime desc limit $offset,$rowsPerPage";
 		return $this->dao->fetchAll($sql);	
 	}
 	/**
-	 * 获取分页的文章信息
+	 * 获取回收站分页的文章信息
 	 * @return  array
 	 */
 	public function getPageDeleteArticle($pageNum, $rowsPerPage){
@@ -53,15 +45,6 @@ class ArticleModel extends Model{
 	public function getDeleteRowCount(){
 		$sql = "select count(*) from bg_article where is_delete = '1'";
 		return $this->dao->fetchColumn($sql);
-	}
-
-	/**
-	 * 获取逻辑删除的文章信息
-	 * @return false | 二维数组
-	 */
-	public function getDeleteArticle(){
-		$sql = "select a.art_id,a.art_title,c.cate_name,a.art_desc,a.art_author,a.art_hits,a.art_addtime from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete = '1' order by art_addtime desc";
-		return $this->dao->fetchAll($sql);	
 	}
 	/**
 	 * 根据文章id获取文章信息

@@ -23,7 +23,7 @@ class CategoryController extends BaseController{
 		$cate['cate_desc'] = $this->filterChar($_POST['cate_desc']);
 		//判断数据是否合法
 		//1.非空
-		if(empty($cate['cate_name']) || empty($cate['cate_pid']) || empty($cate['cate_sort']) || empty($cate['cate_desc'])){
+		if(empty($cate['cate_name']) || empty($cate['cate_sort']) || empty($cate['cate_desc'])){
 			$this->jump('index.php?m=Admin&c=Category&a=index','填写的信息有误',2);
 		}
 		//2.判断数字是否合法
@@ -66,7 +66,7 @@ class CategoryController extends BaseController{
 			$cate['cate_desc'] = $this->filterChar($_POST['cate_desc']);
 			//判断数据合法性
 			//1.非空
-			if(empty($cate['cate_name']) || empty($cate['cate_pid']) || empty($cate['cate_sort']) || empty($cate['cate_desc'])){
+			if(empty($cate['cate_name']) || empty($cate['cate_sort']) || empty($cate['cate_desc'])){
 				$this->jump("index.php?m=Admin&c=Category&a=update&cate_id=$cate_id",'填写的信息有误',2);
 			}
 			//2.判断数字是否合法

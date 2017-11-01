@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-10-31 09:45:05
+/* Smarty version 3.1.29, created on 2017-11-01 08:01:12
   from "D:\wamp\www\blog\App\Admin\View\Article\index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_59f83811d9cc69_55668324',
+  'unifunc' => 'content_59f971380766e0_27319976',
   'file_dependency' => 
   array (
     '9b2f899048cdb15d5ccfeea2f556568e205ff5e5' => 
     array (
       0 => 'D:\\wamp\\www\\blog\\App\\Admin\\View\\Article\\index.html',
-      1 => 1509439502,
+      1 => 1509519670,
       2 => 'file',
     ),
   ),
@@ -21,13 +21,15 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:../Public/footer.html' => 1,
   ),
 ),false)) {
-function content_59f83811d9cc69_55668324 ($_smarty_tpl) {
+function content_59f971380766e0_27319976 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_truncate')) require_once 'D:\\wamp\\www\\blog\\Vendor\\Smarty\\plugins\\modifier.truncate.php';
 if (!is_callable('smarty_modifier_date_format')) require_once 'D:\\wamp\\www\\blog\\Vendor\\Smarty\\plugins\\modifier.date_format.php';
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:../Public/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
-  <form action="index.php?m=Admin&c=Article&a=deleteAll" method="post" >
+  <form action="index.php?m=Admin&c=Article&a=deleteAll&pageNum=<?php echo (($tmp = @$_GET['pageNum'])===null||$tmp==='' ? '1' : $tmp);?>
+" method="post" >
     <h1 class="page-header">文章</h1>
     <ol class="breadcrumb">
       <li><a class="btn btn-primary btn-sm" href="index.php?m=Admin&c=Article&a=add">添加文章</a></li>
@@ -95,26 +97,36 @@ $__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
           <tr>
             <td><input type="checkbox" class="input-control" name="id[]" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
 "/></td>
-            <td class="article-title"><?php echo $_smarty_tpl->tpl_vars['row']->value['art_title'];?>
+            <td class="article-title"><?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['row']->value['art_title'],8,'...');?>
 </td>
             <td><?php echo $_smarty_tpl->tpl_vars['row']->value['cate_name'];?>
 </td>
             <td class="hidden-sm"><?php echo $_smarty_tpl->tpl_vars['row']->value['art_author'];?>
 </td>
-            <td class="hidden-sm"><?php echo $_smarty_tpl->tpl_vars['row']->value['art_desc'];?>
+            <td class="hidden-sm"><?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['row']->value['art_desc'],20,'...');?>
 </td>
             <td class="hidden-sm"><?php echo $_smarty_tpl->tpl_vars['row']->value['art_hits'];?>
 </td>
             <td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['row']->value['art_addtime'],'%Y-%m-%d %H:%M:%S');?>
 </td>
             <td align="center">
-              <a class="btn btn-warning  btn-xs" href="index.php?m=Admin&c=Article&a=recomment&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+            <?php if ($_smarty_tpl->tpl_vars['row']->value['is_recomment'] == 0) {?>
+              <a class="btn btn-warning  btn-xs" href="index.php?m=Admin&c=Article&a=recomment&is_recomment=<?php echo $_smarty_tpl->tpl_vars['row']->value['is_recomment'];?>
+&pageNum=<?php echo (($tmp = @$_GET['pageNum'])===null||$tmp==='' ? '1' : $tmp);?>
+&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
 ">未推荐</a>
+            <?php } else { ?>  
+              <a class="btn btn-primary  btn-xs" href="index.php?m=Admin&c=Article&a=recomment&is_recomment=<?php echo $_smarty_tpl->tpl_vars['row']->value['is_recomment'];?>
+&pageNum=<?php echo (($tmp = @$_GET['pageNum'])===null||$tmp==='' ? '1' : $tmp);?>
+&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+">已推荐</a>      
+            <?php }?>
             </td>
             <td>
               <a class="btn btn-primary btn-xs" href="index.php?m=Admin&c=Article&a=update&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
 ">修改</a> 
-              <a class="btn btn-danger btn-xs" href="index.php?m=Admin&c=Article&a=delete&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+              <a class="btn btn-danger btn-xs" href="index.php?m=Admin&c=Article&a=delete&pageNum=<?php echo (($tmp = @$_GET['pageNum'])===null||$tmp==='' ? '1' : $tmp);?>
+&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
 " onclick="return confirm('确定删除文章？')">删除</a>
             </td>
           </tr>
@@ -132,9 +144,6 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
       <nav>
         <div class="btn-toolbar operation" role="toolbar">
           <div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>
-          <div class="btn-group" role="group">
-            <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
-          </div>
         </div>
         <!--输出分页-->
         <?php echo $_smarty_tpl->tpl_vars['page']->value;?>

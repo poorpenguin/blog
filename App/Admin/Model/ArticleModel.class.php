@@ -100,4 +100,16 @@ class ArticleModel extends Model{
 		$sql = "delete from bg_article where art_id in($art_id)";
 		return $this->dao->exec($sql);	
 	}
+	/**
+	 * 根据id推荐文章
+	 */
+	public function updateRecommentById($art_id,$is_recomment){
+		if($is_recomment == 0){
+			$is_recomment = 1;
+		}else{
+			$is_recomment = 0;
+		}
+		$sql = "update bg_article set is_recomment = '$is_recomment' where art_id = $art_id";
+		return $this->dao->exec($sql);
+	}
 }

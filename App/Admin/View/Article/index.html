@@ -1,6 +1,6 @@
 {include file = '../Public/head.html'}
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
-  <form action="index.php?m=Admin&c=Article&a=deleteAll" method="post" >
+  <form action="index.php?m=Admin&c=Article&a=deleteAll&pageNum={$smarty.get.pageNum|default:'1'}" method="post" >
     <h1 class="page-header">文章</h1>
     <ol class="breadcrumb">
       <li><a class="btn btn-primary btn-sm" href="index.php?m=Admin&c=Article&a=add">添加文章</a></li>
@@ -56,18 +56,22 @@
           {foreach from=$artInfo item='row'}
           <tr>
             <td><input type="checkbox" class="input-control" name="id[]" value="{$row.art_id}"/></td>
-            <td class="article-title">{$row.art_title}</td>
+            <td class="article-title">{$row.art_title|truncate:8:'...'}</td>
             <td>{$row.cate_name}</td>
             <td class="hidden-sm">{$row.art_author}</td>
-            <td class="hidden-sm">{$row.art_desc}</td>
+            <td class="hidden-sm">{$row.art_desc|truncate:20:'...'}</td>
             <td class="hidden-sm">{$row.art_hits}</td>
             <td>{$row.art_addtime|date_format:'%Y-%m-%d %H:%M:%S'}</td>
             <td align="center">
-              <a class="btn btn-warning  btn-xs" href="index.php?m=Admin&c=Article&a=recomment&art_id={$row.art_id}">未推荐</a>
+            {if $row.is_recomment == 0}
+              <a class="btn btn-warning  btn-xs" href="index.php?m=Admin&c=Article&a=recomment&is_recomment={$row.is_recomment}&pageNum={$smarty.get.pageNum|default:'1'}&art_id={$row.art_id}">未推荐</a>
+            {else}  
+              <a class="btn btn-primary  btn-xs" href="index.php?m=Admin&c=Article&a=recomment&is_recomment={$row.is_recomment}&pageNum={$smarty.get.pageNum|default:'1'}&art_id={$row.art_id}">已推荐</a>      
+            {/if}
             </td>
             <td>
               <a class="btn btn-primary btn-xs" href="index.php?m=Admin&c=Article&a=update&art_id={$row.art_id}">修改</a> 
-              <a class="btn btn-danger btn-xs" href="index.php?m=Admin&c=Article&a=delete&art_id={$row.art_id}" onclick="return confirm('确定删除文章？')">删除</a>
+              <a class="btn btn-danger btn-xs" href="index.php?m=Admin&c=Article&a=delete&pageNum={$smarty.get.pageNum|default:'1'}&art_id={$row.art_id}" onclick="return confirm('确定删除文章？')">删除</a>
             </td>
           </tr>
           {/foreach}
@@ -78,9 +82,6 @@
       <nav>
         <div class="btn-toolbar operation" role="toolbar">
           <div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>
-          <div class="btn-group" role="group">
-            <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
-          </div>
         </div>
         <!--输出分页-->
         {$page}

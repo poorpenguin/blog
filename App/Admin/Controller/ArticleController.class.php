@@ -156,9 +156,9 @@ class ArticleController extends BaseController{
 		$article = Factory::M('ArticleModel');
 		$res = $article->deleteArticleById($art_id);
 		if($res){
-			$this->jump('index.php?m=Admin&c=Article&a=index');
+			$this->jump("index.php?m=Admin&c=Article&a=index&pageNum={$_GET['pageNum']}");
 		}else{
-			$this->jump('index.php?m=Admin&c=Article&a=index','发生未知错误,删除文章失败',2);
+			$this->jump("index.php?m=Admin&c=Article&a=index&pageNum={$_GET['pageNum']}",'发生未知错误,删除文章失败',2);
 		}
 	}
 	/**
@@ -171,12 +171,12 @@ class ArticleController extends BaseController{
 			$article = Factory::M('ArticleModel');
 			$res = $article->deleteArticleAll($art_id);
 			if($res){
-				$this->jump('index.php?m=Admin&c=Article&a=index');
+				$this->jump("index.php?m=Admin&c=Article&a=index&pageNum={$_GET['pageNum']}");
 			}else{
-				$this->jump('index.php?m=Admin&c=Article&a=index','发生未知错误,删除文章失败',2);
+				$this->jump("index.php?m=Admin&c=Article&a=index&pageNum={$_GET['pageNum']}",'发生未知错误,删除文章失败',2);
 			}
 		}else{
-			$this->jump('index.php?m=Admin&c=Article&a=index','请选择删除项',2);
+			$this->jump("index.php?m=Admin&c=Article&a=index&pageNum={$_GET['pageNum']}",'请选择删除项',2);
 		}
 	}
 	/**
@@ -250,6 +250,23 @@ class ArticleController extends BaseController{
 			}
 		}else{
 			$this->jump('index.php?m=Admin&c=Article&a=recycle','请选择要彻底删除项',2);
+		}
+	}
+	/**
+	 * 文章是否上推荐
+	 */
+	public function recomment(){
+		//文章id
+		$art_id = $_GET['art_id'];
+		//推荐标记
+		$is_recomment = $_GET['is_recomment'];
+		//实例化
+		$article = Factory::M('ArticleModel');
+		$res = $article->updateRecommentById($art_id,$is_recomment);
+		if($res){
+			$this->jump("index.php?m=Admin&c=Article&a=index&pageNum={$_GET['pageNum']}");
+		}else{
+			$this->jump("index.php?m=Admin&c=Article&a=index&pageNum={$_GET['pageNum']}",'发生未知错误,推荐文章失败',2);
 		}
 	}
 

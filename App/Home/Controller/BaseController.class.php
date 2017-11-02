@@ -8,15 +8,19 @@ class BaseController extends Controller{
 	 * 需要在自动执行的方法
 	 */
 	public function auto(){
-		$this->getCateInfo();
+		$this->getPublicInfo();
 	}
 	/**
-	 * 获取主分类
+	 * 获取公共部分内容
 	 */
-	public function getCateInfo(){
+	public function getPublicInfo(){
+		/*获取右侧导航分类*/
 		$category = Factory::M('CategoryModel');
 		$cateInfo = $category->getCategory();
-
 		$this->assign('cateInfo',$cateInfo);
+		/*获取热门文章*/
+		$article = Factory::M('ArticleModel');
+		$hotArt = $article->getHotArtById(8);
+		$this->assign('hotArt',$hotArt);
 	}
 }

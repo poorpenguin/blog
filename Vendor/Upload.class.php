@@ -51,7 +51,7 @@ class Upload {
 		$res = move_uploaded_file($file['tmp_name'], $target);
 		if($res){
 			//成功时返回上传文件的路径
-			return $target;
+			return './Uploads/thumb/' . $newname;
 		}else{
 			$this->$error = '发生位置错误，上传失败！';
 			return false;

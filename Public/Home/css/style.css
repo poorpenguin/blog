@@ -41,6 +41,9 @@ li {
 	list-style: none;
 	text-align: -webkit-match-parent;
 }
+.nav>li.active{
+	background-color: #FFFFFF;
+}
 body, input, button, textarea, select {
 	font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
@@ -958,7 +961,8 @@ textarea::-webkit-scrollbar-thumb {
 	font-size: 14px;
 	color: #666;
 	padding: 8px 0px 0px 3px;
-	min-height: 76px;
+	height: auto;
+	max-height: 76px;
 	text-decoration: none;
 }
 .sidebar .sidebar-block ul li a:hover {
@@ -1044,7 +1048,7 @@ textarea::-webkit-scrollbar-thumb {
 	color: #3399CC;
 }
 .sidebar .recommend ul li a {
-	padding-right: 90px;
+	
 }
 .sidebar .recommend ul li .thumb {
 	position: absolute;

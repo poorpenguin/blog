@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-11-02 10:15:02
+/* Smarty version 3.1.29, created on 2017-11-03 07:57:59
   from "D:\wamp\www\blog\App\Home\View\Public\head.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_59fae2166eca81_14706818',
+  'unifunc' => 'content_59fc13771fd799_23953564',
   'file_dependency' => 
   array (
     'b0e5f4e0ee53479fd33d652b694b98bb20ba33a5' => 
     array (
       0 => 'D:\\wamp\\www\\blog\\App\\Home\\View\\Public\\head.html',
-      1 => 1509614061,
+      1 => 1509690895,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_59fae2166eca81_14706818 ($_smarty_tpl) {
+function content_59fc13771fd799_23953564 ($_smarty_tpl) {
 ?>
 <!doctype html>
 <html>
@@ -134,12 +134,33 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
       </div>
       <div id="header-xs-menu" class="navbar-collapse collapse">
         <ul class="nav navbar-nav header-xs-nav">
-          <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home"></span>网站首页</a></li>
-          <li><a href=""><span class="glyphicon glyphicon-erase"></span>网站前端</a></li>
-          <li><a href=""><span class="glyphicon glyphicon-inbox"></span>后端技术</a></li>
-          <li><a href=""><span class="glyphicon glyphicon-globe"></span>管理系统</a></li>
-          <li><a href="about.html"><span class="glyphicon glyphicon-user"></span>关于我们</a></li>
-          <li><a href="friendly.html"><span class="glyphicon glyphicon-tags"></span>友情链接</a></li>
+          <li>
+            <a href="index.php?m=Home&c=Index&a=index"><span class="glyphicon glyphicon-home"></span>网站首页</a>
+          </li>
+          <?php
+$_from = $_smarty_tpl->tpl_vars['cateInfo']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_row_1_saved_item = isset($_smarty_tpl->tpl_vars['row']) ? $_smarty_tpl->tpl_vars['row'] : false;
+$_smarty_tpl->tpl_vars['row'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['row']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+$__foreach_row_1_saved_local_item = $_smarty_tpl->tpl_vars['row'];
+?>
+          <li>
+            <a href="index.php?m=Home&c=Article&a=index&cate_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['cate_id'];?>
+"><span class="glyphicon glyphicon-home"></span><?php echo $_smarty_tpl->tpl_vars['row']->value['cate_name'];?>
+</a>
+          </li>
+          <?php
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_1_saved_local_item;
+}
+if ($__foreach_row_1_saved_item) {
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_1_saved_item;
+}
+?>
         </ul>
         <form class="navbar-form" action="search.php" method="post" style="padding:0 25px;">
           <div class="input-group">

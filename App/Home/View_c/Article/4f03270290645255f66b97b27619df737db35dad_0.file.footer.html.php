@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-10-31 02:53:31
+/* Smarty version 3.1.29, created on 2017-11-03 07:33:44
   from "D:\wamp\www\blog\App\Home\View\Public\footer.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_59f7d79bec2a69_79015217',
+  'unifunc' => 'content_59fc0dc861f3b7_44443324',
   'file_dependency' => 
   array (
     '4f03270290645255f66b97b27619df737db35dad' => 
     array (
       0 => 'D:\\wamp\\www\\blog\\App\\Home\\View\\Public\\footer.html',
-      1 => 1509413697,
+      1 => 1509690821,
       2 => 'file',
     ),
   ),
@@ -19,13 +19,17 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_59f7d79bec2a69_79015217 ($_smarty_tpl) {
+function content_59fc0dc861f3b7_44443324 ($_smarty_tpl) {
 ?>
-<aside class="sidebar visible-lg"><!--右侧>992px显示-->
+<!--右侧>992px显示-->
+<aside class="sidebar visible-lg">
+    <!--每日一句-->
     <div class="sentence"> <strong>每日一句</strong>
       <h2>2015年11月1日 星期日</h2>
       <p>你是我人生中唯一的主角，我却只能是你故事中的一晃而过得路人甲。</p>
     </div>
+    <!--/每日一句-->
+    <!--搜索框-->
     <div id="search" class="sidebar-block search" role="search">
       <h2 class="title"><strong>搜索</strong></h2>
       <form class="navbar-form" action="search.php" method="post">
@@ -36,41 +40,59 @@ function content_59f7d79bec2a69_79015217 ($_smarty_tpl) {
           </span> </div>
       </form>
     </div>
+    <!--/搜索框-->
+    <!--热门文章-->
     <div class="sidebar-block recommend">
-      <h2 class="title"><strong>热门推荐</strong></h2>
+      <h2 class="title"><strong>热门文章</strong></h2>
       <ul>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text">个人技术博客技术博客的SHORTCUT和ICON图标 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text">个人技术博客技术博客的SHORTCUT和ICON图标 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text">个人技术博客技术博客的SHORTCUT和ICON图标 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text">个人技术博客技术博客的SHORTCUT和ICON图标 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
-        <li><a target="_blank" href=""> <span class="thumb"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text">个人技术博客技术博客的SHORTCUT和ICON图标 ...</span> <span class="text-muted">阅读(2165)</span></a></li>
+        <?php
+$_from = $_smarty_tpl->tpl_vars['hotArt']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_row_0_saved_item = isset($_smarty_tpl->tpl_vars['row']) ? $_smarty_tpl->tpl_vars['row'] : false;
+$_smarty_tpl->tpl_vars['row'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['row']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+$__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
+?>
+        <li data-toggle="tooltip" title="<?php echo $_smarty_tpl->tpl_vars['row']->value['art_title'];?>
+">
+          <a target="_blank" href=""> 
+            <span class="text"><?php echo $_smarty_tpl->tpl_vars['row']->value['art_title'];?>
+</span> 
+            <span class="text-muted">阅读(<?php echo $_smarty_tpl->tpl_vars['row']->value['art_hits'];?>
+)</span></a>
+        </li>
+        <?php
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_local_item;
+}
+if ($__foreach_row_0_saved_item) {
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
+}
+?>
       </ul>
     </div>
+    <!--/热门推荐-->
+    <!--最新评论-->
     <div class="sidebar-block comment">
       <h2 class="title"><strong>最新评论</strong></h2>
       <ul>
-        <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span class="face"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br />
-          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span class="face"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br />
-          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="个人技术博客技术博客的SHORTCUT和ICON图标...的评论"><a target="_blank" href=""><span class="face"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br />
-          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="个人技术博客技术博客的SHORTCUT和ICON图标...的评论"><a target="_blank" href=""><span class="face"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br />
-          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
-        <li data-toggle="tooltip" data-placement="top" title="个人技术博客技术博客的SHORTCUT和ICON图标...的评论"><a target="_blank" href=""><span class="face"><img src="<?php echo @constant('IMAGE_DIR');?>
-/icon/icon.png" alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br />
-          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
+        <li data-toggle="tooltip" data-placement="top" title="站长的评论">
+          <a target="_blank" href="">
+            <span class="face">
+              <img src="<?php echo @constant('IMAGE_DIR');?>
+/icon/icon.png" alt="">
+            </span> 
+            <span class="text">
+              <strong>个人技术博客站长</strong> (2015-10-18) 说：<br />欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...
+            </span>
+          </a>
+        </li>
       </ul>
     </div>
+    <!--/最新评论-->
   </aside>
   <!--/右侧>992px显示-->
   <footer class="footer">POWERED BY &copy;<a href="#">个人技术博客 XXXXX.COM</a> ALL RIGHTS RESERVED &nbsp;&nbsp;&nbsp;<span><a href="http://www.mycodes.net/" target="_blank">源码之家</a></span> <span style="display:none"><a href="">网站统计</a></span> </footer>
@@ -96,6 +118,13 @@ $('body').show();
 $('.version').text(NProgress.version);
 NProgress.start();
 setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+//标签页高亮
+$(function(){
+  //当前页面导航高亮显示
+  var index = window.location.href.split("/").length - 1;
+  var href = window.location.href.split("/")[index];
+  $("header .nav>li>a[href='"+ href +"']").parent().addClass("active");
+});
 //返回顶部按钮
 $(function(){
 	$(window).scroll(function(){

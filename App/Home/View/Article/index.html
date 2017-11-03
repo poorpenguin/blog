@@ -1,0 +1,50 @@
+{include file='../Public/head.html'}
+<!--内容-->
+<div class="content-wrap">
+    <div class="content">
+      	<div class="content-block new-content">
+	        <h2 class="title"><strong>{$cateName}</strong></h2>
+	        <div class="row">
+	        {foreach from=$artInfo item='row'}
+			    <div class="news-list">
+			        <div class="news-img col-xs-5 col-sm-5 col-md-4"> 
+			        	<a target="_blank" href="">
+			        		<img src="{$row.art_thumb}" alt="{$row.art_title}">
+			        	</a> 
+			        </div>
+			        <div class="news-info col-xs-7 col-sm-7 col-md-8">
+			          	<dl>
+				            <dt> 
+				            	<a href="" target="_blank" >{$row.art_title}</a>
+				            </dt>
+				            <dd>
+				            	<span class="name">
+				            		<a href="" title="由 个人技术博客 发布" rel="author">{$row.art_author}</a>
+				            	</span> 
+				            	<span class="identity"></span> 
+				            	<span class="time">{$row.art_addtime|date_format:'%Y-%m-%d'}</span>
+				            </dd>
+				            <dd class="text">
+				            	{$row.art_desc|truncate:100:'...'}
+				            </dd>
+			          	</dl>
+				        <div class="news_bot col-sm-7 col-md-8"> 
+				          	<span class="tags visible-lg visible-md"> 
+				          		<a href="">{$row.cate_name}</a>
+				          	</span> 
+				          	<span class="look"> 共 <strong>{$row.art_hits}</strong> 人围观
+				        </div>
+			        </div>
+			    </div>
+			{foreachelse}
+				<h1>暂无文章更新</h1> 
+			{/foreach}    
+	        </div>
+	        <div class="quotes" style="margin-top:15px">
+	        	{$page}
+	        </div>
+      	</div>
+    </div>
+</div>
+  <!--/内容-->
+{include file='../Public/footer.html'}

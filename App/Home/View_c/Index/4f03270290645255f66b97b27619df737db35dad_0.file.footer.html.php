@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-11-02 10:31:36
+/* Smarty version 3.1.29, created on 2017-11-03 07:57:59
   from "D:\wamp\www\blog\App\Home\View\Public\footer.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_59fae5f8dfbb74_90170603',
+  'unifunc' => 'content_59fc13772e00c2_32769606',
   'file_dependency' => 
   array (
     '4f03270290645255f66b97b27619df737db35dad' => 
     array (
       0 => 'D:\\wamp\\www\\blog\\App\\Home\\View\\Public\\footer.html',
-      1 => 1509615093,
+      1 => 1509690821,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_59fae5f8dfbb74_90170603 ($_smarty_tpl) {
+function content_59fc13772e00c2_32769606 ($_smarty_tpl) {
 ?>
 <!--右侧>992px显示-->
 <aside class="sidebar visible-lg">
@@ -123,7 +123,7 @@ $(function(){
   //当前页面导航高亮显示
   var index = window.location.href.split("/").length - 1;
   var href = window.location.href.split("/")[index];
-  $("header .nav>li>a[href*='"+ href +"']").parent().addClass("active");
+  $("header .nav>li>a[href='"+ href +"']").parent().addClass("active");
 });
 //返回顶部按钮
 $(function(){

@@ -69,7 +69,7 @@ $(function(){
   //当前页面导航高亮显示
   var index = window.location.href.split("/").length - 1;
   var href = window.location.href.split("/")[index];
-  $("header .nav>li>a[href*='"+ href +"']").parent().addClass("active");
+  $("header .nav>li>a[href='"+ href +"']").parent().addClass("active");
 });
 //返回顶部按钮
 $(function(){

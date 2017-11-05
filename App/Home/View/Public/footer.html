@@ -2,7 +2,7 @@
 <aside class="sidebar visible-lg">
     <!--每日一句-->
     <div class="sentence"> <strong>每日一句</strong>
-      <h2>2015年11月1日 星期日</h2>
+      <h2>{$smarty.now|date_format:'$Y年'}2015年11月1日 星期日</h2>
       <p>你是我人生中唯一的主角，我却只能是你故事中的一晃而过得路人甲。</p>
     </div>
     <!--/每日一句-->
@@ -24,7 +24,7 @@
       <ul>
         {foreach from=$hotArt item='row'}
         <li data-toggle="tooltip" title="{$row.art_title}">
-          <a target="_blank" href=""> 
+          <a target="_blank" href="index.php?m=Home&c=Article&a=content&art_id={$row.art_id}"> 
             <span class="text">{$row.art_title}</span> 
             <span class="text-muted">阅读({$row.art_hits})</span></a>
         </li>
@@ -51,7 +51,9 @@
     <!--/最新评论-->
   </aside>
   <!--/右侧>992px显示-->
-  <footer class="footer">POWERED BY &copy;<a href="#">个人技术博客 XXXXX.COM</a> ALL RIGHTS RESERVED &nbsp;&nbsp;&nbsp;<span><a href="http://www.mycodes.net/" target="_blank">源码之家</a></span> <span style="display:none"><a href="">网站统计</a></span> </footer>
+  <footer class="footer">
+
+  </footer>
 </section>
 <div><a href="javascript:;" class="gotop" style="display:none;"></a></div>
 <!--/返回顶部--> 

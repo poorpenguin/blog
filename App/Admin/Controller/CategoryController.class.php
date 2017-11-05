@@ -7,7 +7,6 @@ class CategoryController extends BaseController{
 	public function index(){
 		$category = Factory::M('CategoryModel');
 		$cateInfo = $category->getCategory();
-
 		$this->assign('cateInfo',$cateInfo);
 		$this->display();
 	}

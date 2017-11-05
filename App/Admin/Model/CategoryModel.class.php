@@ -24,7 +24,7 @@ class CategoryModel extends Model{
 			if($row['cate_pid'] == $pid){
 				$row['level'] = $level;
 				$cate_list[] = $row;
-				//递归
+				//递归出 当前分类的id 是 哪个分类的pid
 				$this->getCateTree($list,$row['cate_id'],$level+1);
 			}
 		}

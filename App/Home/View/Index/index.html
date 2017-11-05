@@ -36,7 +36,7 @@
             <div class="news-info col-xs-7 col-sm-7 col-md-8">
               <dl>
                 <dt> 
-                  <a href="" target="_blank" >{$row.art_title}</a> 
+                  <a href="index.php?m=Home&c=Article&a=content&art_id={$row.art_id}" target="_blank" >{$row.art_title}</a> 
                 </dt>
                 <dd>
                   <span class="name">
@@ -69,17 +69,6 @@
             </div>
           </div>
           {/foreach}
-        </div>
-        <!--<div class="news-more" id="pagination">
-        	<a href="">查看更多</a>
-        </div>-->
-        <div class="quotes" style="margin-top:15px">
-          <span class="disabled">首页</span>
-          <span class="disabled">上一页</span>
-          <span class="current">1</span>
-          <a href="">2</a>
-          <a href="">下一页</a>
-          <a href="">尾页</a>
         </div>
       </div>
     </div>

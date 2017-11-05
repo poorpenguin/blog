@@ -5,20 +5,20 @@ return array(
 		'host' => '127.0.0.1',
 		'port' => '3306',
 		'user' => 'root',
-		'pwd' => '123456',
+		'pwd' => 'root',
 		'charset' => 'utf8',
 		'dbname' => 'blog'
 	),
 	'App' => array(	//应用程序配置
-		'default_module' => 'Admin',
+		'default_module' => 'Home',
 	),
 	'Test' => array(
 		'default_controller' => 'Goods',
 		'default_action' => 'list',
 	),
 	'Home' => array(
-		'default_controller' => '',
-		'default_action' => '',
+		'default_controller' => 'Index',
+		'default_action' => 'index',
 	),
 	'Admin' => array(
 		'default_controller' => 'Admin',

@@ -1,8 +1,34 @@
+<?php
+/* Smarty version 3.1.29, created on 2017-11-08 09:11:04
+  from "D:\wamp\www\blog\App\Home\View\Public\footer.html" */
+
+if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+  'has_nocache_code' => false,
+  'version' => '3.1.29',
+  'unifunc' => 'content_5a02bc18a5d680_01542895',
+  'file_dependency' => 
+  array (
+    '4f03270290645255f66b97b27619df737db35dad' => 
+    array (
+      0 => 'D:\\wamp\\www\\blog\\App\\Home\\View\\Public\\footer.html',
+      1 => 1510128661,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5a02bc18a5d680_01542895 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_date_format')) require_once 'D:\\wamp\\www\\blog\\Vendor\\Smarty\\plugins\\modifier.date_format.php';
+?>
 <!--右侧>992px显示-->
 <aside class="sidebar visible-lg">
     <!--每日一句-->
-    <div class="sentence"><strong>{$smarty.session.blog_userinfo.user_name|default:'未登录'}</strong>
-      <h2>{$smarty.now|date_format:'%Y-%m-%d %A'}</h2>
+    <div class="sentence"><strong><?php echo (($tmp = @$_SESSION['blog_userinfo']['user_name'])===null||$tmp==='' ? '未登录' : $tmp);?>
+</strong>
+      <h2><?php echo smarty_modifier_date_format(time(),'%Y-%m-%d %A');?>
+</h2>
       <p>你是我人生中唯一的主角，我却只能是你故事中的一晃而过得路人甲。</p>
     </div>
     <!--/每日一句-->
@@ -22,13 +48,34 @@
     <div class="sidebar-block recommend">
       <h2 class="title"><strong>热门文章</strong></h2>
       <ul>
-        {foreach from=$hotArt item='row'}
-        <li data-toggle="tooltip" title="{$row.art_title}">
-          <a target="_blank" href="index.php?m=Home&c=Article&a=content&art_id={$row.art_id}"> 
-            <span class="text">{$row.art_title}</span> 
-            <span class="text-muted">阅读({$row.art_hits})</span></a>
+        <?php
+$_from = $_smarty_tpl->tpl_vars['hotArt']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_row_0_saved_item = isset($_smarty_tpl->tpl_vars['row']) ? $_smarty_tpl->tpl_vars['row'] : false;
+$_smarty_tpl->tpl_vars['row'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['row']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+$__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
+?>
+        <li data-toggle="tooltip" title="<?php echo $_smarty_tpl->tpl_vars['row']->value['art_title'];?>
+">
+          <a target="_blank" href="index.php?m=Home&c=Article&a=content&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+"> 
+            <span class="text"><?php echo $_smarty_tpl->tpl_vars['row']->value['art_title'];?>
+</span> 
+            <span class="text-muted">阅读(<?php echo $_smarty_tpl->tpl_vars['row']->value['art_hits'];?>
+)</span></a>
         </li>
-        {/foreach}
+        <?php
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_local_item;
+}
+if ($__foreach_row_0_saved_item) {
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
+}
+?>
       </ul>
     </div>
     <!--/热门推荐-->
@@ -39,7 +86,8 @@
         <li data-toggle="tooltip" data-placement="top" title="站长的评论">
           <a target="_blank" href="">
             <span class="face">
-              <img src="{$smarty.const.IMAGE_DIR}/icon/icon.png" alt="">
+              <img src="<?php echo @constant('IMAGE_DIR');?>
+/icon/icon.png" alt="">
             </span> 
             <span class="text">
               <strong>个人技术博客站长</strong> (2015-10-18) 说：<br />欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...
@@ -57,10 +105,20 @@
 </section>
 <div><a href="javascript:;" class="gotop" style="display:none;"></a></div>
 <!--/返回顶部--> 
-<script src="{$smarty.const.JS_DIR}/jquery-2.1.4.min.js" type="text/javascript"></script> 
-<script src="{$smarty.const.JS_DIR}/nprogress.js" type="text/javascript" ></script> 
-<script src="{$smarty.const.JS_DIR}/bootstrap.min.js" type="text/javascript"></script> 
-<script type="text/javascript">
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/jquery-2.1.4.min.js" type="text/javascript"><?php echo '</script'; ?>
+> 
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/nprogress.js" type="text/javascript" ><?php echo '</script'; ?>
+> 
+<?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/bootstrap.min.js" type="text/javascript"><?php echo '</script'; ?>
+> 
+<?php echo '<script'; ?>
+ type="text/javascript">
 //页面加载
 $('body').show();
 $('.version').text(NProgress.version);
@@ -181,6 +239,8 @@ jQuery("#pagination a").on("click", function ()
     });
     return false;
 });
-</script>
+<?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}

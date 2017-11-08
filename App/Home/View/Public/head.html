@@ -41,6 +41,17 @@ window.onload = function() {
           <a href="index.php?m=Home&c=Article&a=index&cate_id={$row.cate_id}"><span class="glyphicon glyphicon-home"></span>{$row.cate_name}</a>
         </li>
         {/foreach}
+        <li>
+          {if $smarty.session.blog_userinfo.user_id|default:0 > 0}
+          <a href="index.php?m=Home&c=User&a=logout">
+            <span class="glyphicon glyphicon-log-out"></span>退出登录
+          </a>
+          {else}
+          <a href="index.php?m=Home&c=User&a=login">
+            <span class="glyphicon glyphicon-user"></span>登录注册
+          </a>
+          {/if}
+        </li>
       </ul>
       <div class="feeds"> 
         <a class="feed feed-xlweibo" href="" target="_blank"><i></i>新浪微博</a> 

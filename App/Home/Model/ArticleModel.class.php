@@ -6,7 +6,7 @@ class ArticleModel extends Model{
 	 * @return mixed      false | array
 	 */
 	public function getRecommentArt($num){
-		$sql = "select a.art_id,a.art_title,a.art_thumb,a.art_desc,a.art_author,a.art_addtime,c.cate_name from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete='0' and is_recomment='1' order by a.art_addtime desc limit $num";
+		$sql = "select a.art_id,a.art_title,a.art_thumb,a.art_desc,a.art_author,a.art_addtime,a.	art_hits,a.reply_nums,c.cate_name from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete='0' and is_recomment='1' order by a.art_addtime desc limit $num";
 		return $this->dao->fetchAll($sql);
 	}
 	/**
@@ -37,7 +37,7 @@ class ArticleModel extends Model{
 	 */
 	public function getArtByCateId($cate_ids,$pageNum,$rowsPerPge){
 		$offset = ($pageNum-1)*$rowsPerPge;
-		$sql = "select a.art_id,a.art_title,a.art_thumb,a.art_desc,a.art_author,a.art_addtime,c.cate_name,a.art_hits from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete='0' and  a.cate_id in($cate_ids) order by a.art_addtime desc limit $offset,$rowsPerPge";
+		$sql = "select a.art_id,a.art_title,a.art_thumb,a.art_desc,a.art_author,a.art_addtime,c.cate_name,a.art_hits,a.reply_nums from bg_article as a left join bg_category as c on a.cate_id = c.cate_id where is_delete='0' and  a.cate_id in($cate_ids) order by a.art_addtime desc limit $offset,$rowsPerPge";
 		return $this->dao->fetchAll($sql);
 	}
 	/**
@@ -74,5 +74,12 @@ class ArticleModel extends Model{
 	public function getNextArt($art_id,$cate_id){
 		$sql = "select art_id,art_title from bg_article where cate_id=$cate_id and art_id>$art_id order by art_id limit 1";
 		return $this->dao->fetchRow($sql);
+	}
+	/**
+	 * 指定文章评论自增
+	 */
+	public function updateReplyNumsBuId($art_id){
+		$sql = "update bg_article set reply_nums = reply_nums+1 where art_id=$art_id";
+		return $this->dao->exec($sql);
 	}
 }

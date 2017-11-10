@@ -370,6 +370,9 @@ body, input, button, textarea, select {
 	display: block;
 	position: relative;
 }
+.no-img {
+	padding-left: 15px;
+}
 .news-info dl {
 	float: right;
 	width: 100%;

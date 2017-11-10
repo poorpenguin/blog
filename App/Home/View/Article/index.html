@@ -34,10 +34,16 @@
 	        <div class="row">
 	        {foreach from=$artInfo item='row'}
 			    <div class="news-list">
-			        <div class="news-img col-xs-5 col-sm-5 col-md-4"> 
-			        	<img src="{$row.art_thumb}" alt="{$row.art_title}">
-			        </div>
-			        <div class="news-info col-xs-7 col-sm-7 col-md-8">
+          		{if $row.art_thumb}
+            		<div class="news-img col-xs-5 col-sm-5 col-md-4"> 
+              			<a target="_blank" href="">
+                			<img src="{$row.art_thumb}" alt="">
+              			</a> 
+            		</div>
+            		<div class="news-info col-xs-7 col-sm-7 col-md-8">
+         		{else}  
+           			<div class="news-info no-img col-xs-12 col-sm-12 col-md-12">
+          		{/if}
 			          	<dl>
 				            <dt> 
 				            	<a href="index.php?m=Home&c=Article&a=content&art_id={$row.art_id}" target="_blank" >{$row.art_title}</a>
@@ -57,7 +63,9 @@
 				          	<span class="tags visible-lg visible-md"> 
 				          		<a href="">{$row.cate_name}</a>
 				          	</span> 
-				          	<span class="look"> 共 <strong>{$row.art_hits}</strong> 人围观
+				          	<span class="look">
+				                共<strong>{$row.art_hits}</strong>次浏览，留下<strong>{$row.reply_nums}</strong>评论 
+			                </span> 
 				        </div>
 			        </div>
 			    </div>

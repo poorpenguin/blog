@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-11-06 03:22:42
+/* Smarty version 3.1.29, created on 2017-11-10 09:17:24
   from "D:\wamp\www\blog\App\Home\View\Article\index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_59ffc772987cd9_73817135',
+  'unifunc' => 'content_5a056094874536_18516883',
   'file_dependency' => 
   array (
     '7f6750b69245488781c8dd1f3cfdbd847e4510f8' => 
     array (
       0 => 'D:\\wamp\\www\\blog\\App\\Home\\View\\Article\\index.html',
-      1 => 1509933967,
+      1 => 1510301840,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:../Public/footer.html' => 1,
   ),
 ),false)) {
-function content_59ffc772987cd9_73817135 ($_smarty_tpl) {
+function content_5a056094874536_18516883 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'D:\\wamp\\www\\blog\\Vendor\\Smarty\\plugins\\modifier.date_format.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'D:\\wamp\\www\\blog\\Vendor\\Smarty\\plugins\\modifier.truncate.php';
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:../Public/head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -117,12 +117,17 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 $__foreach_row_2_saved_local_item = $_smarty_tpl->tpl_vars['row'];
 ?>
 			    <div class="news-list">
-			        <div class="news-img col-xs-5 col-sm-5 col-md-4"> 
-			        	<img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['art_thumb'];?>
-" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['art_title'];?>
-">
-			        </div>
-			        <div class="news-info col-xs-7 col-sm-7 col-md-8">
+          		<?php if ($_smarty_tpl->tpl_vars['row']->value['art_thumb']) {?>
+            		<div class="news-img col-xs-5 col-sm-5 col-md-4"> 
+              			<a target="_blank" href="">
+                			<img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['art_thumb'];?>
+" alt="">
+              			</a> 
+            		</div>
+            		<div class="news-info col-xs-7 col-sm-7 col-md-8">
+         		<?php } else { ?>  
+           			<div class="news-info no-img col-xs-12 col-sm-12 col-md-12">
+          		<?php }?>
 			          	<dl>
 				            <dt> 
 				            	<a href="index.php?m=Home&c=Article&a=content&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
@@ -149,8 +154,11 @@ $__foreach_row_2_saved_local_item = $_smarty_tpl->tpl_vars['row'];
 				          		<a href=""><?php echo $_smarty_tpl->tpl_vars['row']->value['cate_name'];?>
 </a>
 				          	</span> 
-				          	<span class="look"> 共 <strong><?php echo $_smarty_tpl->tpl_vars['row']->value['art_hits'];?>
-</strong> 人围观
+				          	<span class="look">
+				                共<strong><?php echo $_smarty_tpl->tpl_vars['row']->value['art_hits'];?>
+</strong>次浏览，留下<strong><?php echo $_smarty_tpl->tpl_vars['row']->value['reply_nums'];?>
+</strong>评论 
+			                </span> 
 				        </div>
 			        </div>
 			    </div>

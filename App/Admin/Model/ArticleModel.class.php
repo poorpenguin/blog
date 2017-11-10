@@ -9,7 +9,7 @@ class ArticleModel extends Model{
 		//炸开数组
 		extract($art);
 		$art_addtime = time();
-		$sql = "insert into bg_article values (null,$cate_id,'$art_title','$art_thumb','$art_desc','$art_comment','$art_author',default,$art_addtime,default,default)";
+		$sql = "insert into bg_article values (null,$cate_id,'$art_title','$art_thumb','$art_desc','$art_comment','$art_author',default,default,$art_addtime,default,default)";
 		return $this->dao->exec($sql);
 	}
 	/**

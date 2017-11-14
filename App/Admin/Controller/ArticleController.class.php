@@ -62,7 +62,20 @@ class ArticleController extends BaseController{
 				$upload = Factory::M('Upload');
 				$res = $upload->uploadFile($_FILES['art_thumb'],$allow,$path,$maxsize);
 				if($res){
-					$art['art_thumb'] = $res;
+					//图片成功上传后制作缩略图
+					$max_w = 220;
+					$max_h = 150;
+					$src_file = $res;
+					$path = UPLOADS_DIR . 'thumb/article_thumb';
+					$image = Factory::M('Image');
+					if($thumbName = $image->makeThumb($max_w,$max_h,$src_file,$path)){
+						//制作成功
+						$res = './Uploads/thumb/article_thumb/' . $thumbName;
+						$art['art_thumb'] = $res;
+					}else{
+						//制作失败
+						$this->jump('index.php?m=Admin&c=Article&a=add',Image::$error,2);
+					}
 				}else{
 					$error = $upload->getError();
 					$this->jump('index.php?m=Admin&c=Article&a=add',$error,2);
@@ -124,9 +137,22 @@ class ArticleController extends BaseController{
 				$upload = Factory::M('Upload');
 				$res = $upload->uploadFile($_FILES['art_thumb'],$allow,$path,$maxsize);
 				if($res){
-					//删除原始缩略图
-					unlink($_POST['art_thumb_bak']);
-					$art['art_thumb'] = $res;
+					//图片成功上传后制作缩略图
+					$max_w = 220;
+					$max_h = 150;
+					$src_file = $res;
+					$path = UPLOADS_DIR . 'thumb/article_thumb';
+					$image = Factory::M('Image');
+					if($thumbName = $image->makeThumb($max_w,$max_h,$src_file,$path)){
+						//制作成功
+						$res = './Uploads/thumb/article_thumb/' . $thumbName;
+						$art['art_thumb'] = $res;
+						//删除原始缩略图
+						unlink($_POST['art_thumb_bak']);
+					}else{
+						//制作失败
+						$this->jump('index.php?m=Admin&c=Article&a=add',Image::$error,2);
+					}
 				}else{
 					$error = $upload->getError();
 					$this->jump("index.php?m=Admin&c=Article&a=update&art_id={$art['art_id']}",$error,2);

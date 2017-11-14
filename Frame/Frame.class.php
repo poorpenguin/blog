@@ -88,6 +88,7 @@ class Frame {
 			'Captcha'	 =>	VEBDOR_DIR . 'Captcha.class.php',
 			'Upload'	 => VEBDOR_DIR . 'Upload.class.php',
 			'Page'		 => FRAME_DIR . 'Page.class.php',
+			'Image'		 => FRAME_DIR . 'Image.class.php',
 		);
 		//判断是否是框架核心类
 		if(isset($frame_class_list[$class_name])){
